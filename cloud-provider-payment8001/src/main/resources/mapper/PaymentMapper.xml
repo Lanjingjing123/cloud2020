@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.huayi.ljj.springcould.dao.PaymentDao">
+
+    <resultMap id="BaseResultMap" type="com.huayi.ljj.springcould.entities.Payment">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <id column="serial" property="serial" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!-- id="create" :方法  parameterType="Payment":参数类型  useGeneratedKeys="true" 插入成功返回值 keyProperty="id"：返回值的属性-->
+    <insert id="create" parameterType="Payment" useGeneratedKeys="true" keyProperty="id">
+        insert into payment(serial)  values(#{serial});
+    </insert>
+
+
+    <select id="getPaymentById" parameterType="Long" resultMap="BaseResultMap">
+        select * from payment where id=#{id};
+    </select>
+
+</mapper>
