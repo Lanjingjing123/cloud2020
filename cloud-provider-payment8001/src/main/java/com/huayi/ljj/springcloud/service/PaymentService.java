@@ -1,6 +1,6 @@
 package com.huayi.ljj.springcloud.service;
 
-import com.huayi.ljj.springcloud.entities.Payment;
+import com.huayi.ljj.springcloud.model.Payment;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,5 +14,5 @@ public interface PaymentService {
 
     public int create(Payment payment);
 
-    public Payment getPaymentById(Long id);
+    public Payment getPaymentById(Integer id);
 }

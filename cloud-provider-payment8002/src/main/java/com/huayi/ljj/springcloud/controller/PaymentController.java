@@ -1,6 +1,6 @@
 package com.huayi.ljj.springcloud.controller;
 
-import com.huayi.ljj.springcloud.entities.Payment;
+import com.huayi.ljj.springcloud.model.Payment;
 import com.huayi.ljj.springcloud.pojo.CommonResult;
 import com.huayi.ljj.springcloud.service.PaymentService;
 import lombok.extern.slf4j.Slf4j;
@@ -41,7 +41,7 @@ public class PaymentController {
     }
 
     @GetMapping(value = "/payment/get/{id}")
-    public CommonResult getPaymentById(@PathVariable("id") Long id){
+    public CommonResult getPaymentById(@PathVariable("id") Integer id){
         Payment payment = paymentService.getPaymentById(id);
         logger.info("12323123");
         logger.info("=============查询的结果*{}]============",payment);
