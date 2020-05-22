@@ -52,7 +52,12 @@
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
         <!-- <table tableName="risk_model_order" domainObjectName="DSRiskModelOrder" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
          <table tableName="tel_bill_record" domainObjectName="DSTelBillRecord" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>-->
-        <table schema="" tableName="payment"></table>
-
+       <!-- <table schema="" tableName="payment"></table>-->
+        <table schema="" tableName="tbl_manufacturer_para" domainObjectName="TblManuFacturerPara"></table>
+        <table schema="" tableName="tbl_order_record_in" domainObjectName="TblOrderRecordIn"></table>
+        <table schema="" tableName="tbl_order_record_out" domainObjectName="TblOrderRecordOut"></table>
+        <table schema="" tableName="tbl_prod_name_para" domainObjectName="TblProdNamePara"></table>
+        <table schema="" tableName="tbl_trans_log" domainObjectName="TblTransLog"></table>
+        <table schema="" tableName="tbl_prod_inventory" domainObjectName="TblProdInventory"></table>
     </context>
 </generatorConfiguration>
