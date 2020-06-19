@@ -10,11 +10,11 @@
         <property name="serviceMap">
             <map>
                 <entry key="12345" value="testService"></entry><!--服务 key:交易码 value:服务名-->
-
+                <entry key="400601" value="t400601"></entry>
             </map>
         </property>
     </bean>
-    <bean id="basePortalTransferService" class="com.huayi.ljj.springcloud.base.impl.BasePortalTransferServiceImpl">
+    <bean id="basePortalTransferService" class="com.huayi.ljj.springcloud.base.impl.GatewayCallService">
 
     </bean>
 

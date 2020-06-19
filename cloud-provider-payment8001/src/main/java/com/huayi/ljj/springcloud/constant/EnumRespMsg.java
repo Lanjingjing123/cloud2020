@@ -9,7 +9,12 @@ public enum  EnumRespMsg {
     /**
      * 交易成功
      */
-    SUCCESS("000000","交易成功")
+    SUCCESS("000000","交易成功"),
+
+    /**
+     * 交易码未正确配置
+     */
+    TRANS_CODE_NOT_FOUND("HY3001","交易吗未正确配置")
     ;
     EnumRespMsg(String code,String msg){
         this.code = code;

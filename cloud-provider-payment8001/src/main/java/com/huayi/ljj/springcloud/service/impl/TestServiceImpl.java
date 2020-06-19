@@ -1,5 +1,7 @@
 package com.huayi.ljj.springcloud.service.impl;
 
+import com.huayi.ljj.springcloud.constant.EnumRespMsg;
+import com.huayi.ljj.springcloud.pojo.resp.BaseResp;
 import com.huayi.ljj.springcloud.service.IService;
 import com.huayi.ljj.springcloud.service.IServiceContext;
 import com.huayi.ljj.springcloud.service.ITestService;
@@ -8,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service(value = "testService")
-public class TestServiceImpl implements ITestService, IService {
+public class TestServiceImpl implements ITestService {
 
     private static final Logger LOG = LoggerFactory.getLogger(TestServiceImpl.class);
     @Override
@@ -19,6 +21,11 @@ public class TestServiceImpl implements ITestService, IService {
     @Override
     public void execute(IServiceContext context) {
         LOG.info("TestServiceImpl.execute begin>>>>>>>>>>>>>>>>>>");
+
+        BaseResp baseResp = new BaseResp();
+        baseResp.setRespCode(EnumRespMsg.SUCCESS.getCode());
+        baseResp.setRespMsg(EnumRespMsg.SUCCESS.getMsg());
+        context.setBaseResp(baseResp);
         LOG.info("TestServiceImpl.execute end<<<<<<<<<<<<<<<<<<<<<");
     }
 }
