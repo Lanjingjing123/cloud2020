@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -108,15 +109,14 @@ public class PaymentController {
     }
 
     @PostMapping(value = "/test2")
-    public BaseResp test(@RequestBody Map<String,String> map) throws Exception {
+    public BaseResp test(@RequestBody Map<String,String> reqMap) throws Exception {
 
-        // 这里利用反射将map 中的数据参数转为对应的 req请求参数
-        BaseReq baseReq = null;
+        LOG.info("============【原始请求】:{}============",reqMap);
 
-        LOG.info("入参:[{}]",baseReq);
         IServiceContext context = new BaseServiceContext();
         // 设置统一上下文参数
-        context.setBaseReq(baseReq);
+
+        context.setParameter("reqMap",reqMap);
         context.setParameter("a","123");
         context.setParameter("b","234");
 
@@ -135,7 +135,7 @@ public class PaymentController {
         }
 
         BaseResp baseResp = context.getBaseResp();
-        LOG.info("平台响应信息[{}]",baseResp);
+        LOG.info("======平台响应信息[{}]======",baseResp);
         return baseResp;
     }
 

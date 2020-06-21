@@ -7,7 +7,7 @@ import com.huayi.ljj.springcloud.service.IServiceContext;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BaseServiceContext implements IServiceContext {
+    public class BaseServiceContext implements IServiceContext {
     /**
      * 服务请求对象
      */
