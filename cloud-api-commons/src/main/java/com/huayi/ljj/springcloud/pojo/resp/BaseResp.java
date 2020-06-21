@@ -23,6 +23,10 @@ public class BaseResp implements Serializable {
      */
     private String createTime;
     /**
+     * 前台流水号
+     */
+    private String fsideJnno;
+    /**
      * 后台流水
      */
     private String tranJnno;
