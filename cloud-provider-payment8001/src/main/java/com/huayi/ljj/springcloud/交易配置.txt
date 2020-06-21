@@ -1,1 +1,5 @@
+配置过程：
+第一步：在 com.huayi.ljj.springcloud.trans 包下配置 pojo 和交易码业务service接口
+第二步：在spring-beans.xml id="baseServiceFactory" 下配置交易码和对应的service(与1中相对应)
+
 400601 - 第一个调通的交易
