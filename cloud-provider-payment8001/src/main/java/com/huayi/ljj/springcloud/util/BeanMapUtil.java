@@ -1,7 +1,7 @@
 package com.huayi.ljj.springcloud.util;
 
 import com.huayi.ljj.springcloud.pojo.req.BaseReq;
-import com.huayi.ljj.springcloud.trans.pojo.req.Req400601;
+
 
 import java.beans.BeanInfo;
 import java.beans.Introspector;
@@ -63,37 +63,5 @@ public class BeanMapUtil {
         return map;
     }
 
-    public static void main(String[] args) throws IllegalAccessException, ClassNotFoundException, InstantiationException {
-        // JAVABEAN TO MAP
-        Req400601 req400601 = new Req400601();
-        req400601.setOrderNo("1001");
-        req400601.setKinds("方管");
-        req400601.setTransCode("400601");
 
-        Map<String, Object> req400601Map = null;
-        try {
-            req400601Map = bean2map(req400601);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println(req400601Map);
-
-
-        Map<String,Object> map = new HashMap<>();
-        map.put("orderNo",req400601.getOrderNo());
-        map.put("kinds",req400601.getKinds());
-        map.put("transCode",req400601.getTransCode());
-
-        BaseReq transReq =null;
-        try {
-            transReq = map2bean(map, "400601","com.huayi.ljj.springcloud.trans.pojo.req");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (transReq instanceof Req400601){
-            System.out.println("1");
-        }
-        System.out.println(transReq);
-//        map.put("kinds",)
-    }
 }

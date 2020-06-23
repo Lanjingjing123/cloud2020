@@ -32,40 +32,11 @@ public class PaymentController {
     @Value("${server.port}")
     private String serverPort;
 
-    @Resource
-    private PaymentService paymentService;
-
     @Autowired
     private BaseServiceFactory baseServiceFactory;
 
     @Autowired
     private GatewayCallService gatewayCallService;
-
-    @PostMapping(value = "/payment/create")
-    public CommonResult create(@RequestBody Payment payment){
-        int result = paymentService.create(payment);
-        LOG.info("=============插入的结果{}]============",result);
-        if (result>0){
-            return new CommonResult(200,"插入数据库成功,服务端口："+serverPort,result);
-
-        }else {
-            return new CommonResult(404,"插入数据库失败",null);
-        }
-    }
-
-    @GetMapping(value = "/payment/get/{id}")
-    public CommonResult getPaymentById(@PathVariable("id") Integer id){
-        Payment payment = paymentService.getPaymentById(id);
-        LOG.info("12323123");
-        LOG.info("=============查询的结果*{}]============",payment);
-        if (payment !=null){
-            return new CommonResult(200,"查询成功,服务端口："+serverPort,payment);
-
-        }else {
-            return new CommonResult(404,"无相关记录，查询ID："+id,null);
-        }
-    }
-
 
     @GetMapping(value = "/test")
     public CommonResult getPaymentById() throws Exception {

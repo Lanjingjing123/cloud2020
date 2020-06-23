@@ -8,9 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Resp40601 extends BaseResp {
-    private static final long serialVersionUID = 617528926985709093L;
-
+public class Resp40204 extends BaseResp {
+    private static final long serialVersionUID = 8106333458198939241L;
     private String orderNo;
-
 }

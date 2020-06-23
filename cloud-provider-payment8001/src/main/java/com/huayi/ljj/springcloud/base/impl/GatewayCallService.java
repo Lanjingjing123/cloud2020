@@ -44,7 +44,7 @@ public class GatewayCallService implements IGatewayCallService {
 
         }catch (Exception e){// 统一异常处理
             BaseResp baseResp = context.getBaseResp();
-            if (baseResp !=null ){
+            if (baseResp ==null ){
                 baseResp = new BaseResp();
             }
             if (e instanceof BaseException){

@@ -1,6 +1,5 @@
 package java.com.ljj;
 
-import com.huayi.ljj.springcloud.trans.pojo.req.Req400601;
 import org.junit.Test;
 
 import java.beans.BeanInfo;
@@ -17,27 +16,6 @@ public class JavaBeanToMap {
         
     }
 
-    @Test
-    public void mapToJavaBean(){
-        // JAVABEAN TO MAP
-        Req400601 req400601 = new Req400601();
-        req400601.setOrderNo("1001");
-        req400601.setKinds("方管");
-        req400601.setTransCode("400601");
-
-        Map<String, Object> req400601Map = null;
-        try {
-            req400601Map = bean2map(req400601);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println(req400601Map);
-
-
-        Map<String,Object> map = new HashMap<>();
-        map.put("orderNo","1001");
-//        map.put("kinds",)
-    }
 
     //把Map转化为JavaBean
     public  <T> T map2bean(Map<String,Object> map, Class<T> clz) throws Exception{

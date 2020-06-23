@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.annotation.Resource;
 
@@ -19,6 +20,7 @@ import javax.annotation.Resource;
  */
 
 
+@EnableTransactionManagement
 @SpringBootApplication
 @EnableEurekaClient
 @ComponentScan({"com.huayi"})

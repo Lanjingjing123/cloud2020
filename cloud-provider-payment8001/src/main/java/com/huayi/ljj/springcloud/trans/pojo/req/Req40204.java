@@ -8,11 +8,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Req400601 extends BaseReq {
-    private static final long serialVersionUID = 1929734492216747681L;
+public class Req40204 extends BaseReq {
 
+    private static final long serialVersionUID = -5306733088465320831L;
     private String orderNo;
 
     private String kinds;
-
 }
