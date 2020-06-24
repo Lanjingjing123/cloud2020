@@ -5,82 +5,82 @@ import java.math.BigDecimal;
 
 public class TblOrderRecordOut implements Serializable {
     /**
-     * 
+     * 订单编号
      */
     private String orderNo;
 
     /**
-     * 
+     * 产品名称
      */
     private String productNm;
 
     /**
-     * 
+     * 产品型号
      */
     private String productKind;
 
     /**
-     * 
+     * 产品厚度
      */
     private String productThickness;
 
     /**
-     * 
+     * 产品长度
      */
     private String productLength;
 
     /**
-     * 
+     * 供货商名称
      */
     private String supplierNm;
 
     /**
-     * 
+     * 供货商简码
      */
     private String supplierCd;
 
     /**
-     * 
+     * 出售单价
      */
     private BigDecimal salePrice;
 
     /**
-     * 
+     * 出售吨位价
      */
     private BigDecimal saleTonPrice;
 
     /**
-     * 
+     * 出售支数
      */
     private String saleNum;
 
     /**
-     * 
+     * 出售重量
      */
     private String saleWeight;
 
     /**
-     * 
+     * 流水号
      */
-    private String transNo;
+    private String transJnno;
 
     /**
-     * 
+     * 交易日期
      */
     private String transDt;
 
     /**
-     * 
+     * 交易时间
      */
     private String transTm;
 
     /**
-     * 
+     * 版本号
      */
     private Integer version;
 
     /**
-     * 
+     * 交易码
      */
     private String transCd;
 
@@ -105,256 +105,256 @@ public class TblOrderRecordOut implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 
-     * @return ORDER_NO 
+     * 订单编号
+     * @return ORDER_NO 订单编号
      */
     public String getOrderNo() {
         return orderNo;
     }
 
     /**
-     * 
-     * @param orderNo 
+     * 订单编号
+     * @param orderNo 订单编号
      */
     public void setOrderNo(String orderNo) {
         this.orderNo = orderNo == null ? null : orderNo.trim();
     }
 
     /**
-     * 
-     * @return PRODUCT_NM 
+     * 产品名称
+     * @return PRODUCT_NM 产品名称
      */
     public String getProductNm() {
         return productNm;
     }
 
     /**
-     * 
-     * @param productNm 
+     * 产品名称
+     * @param productNm 产品名称
      */
     public void setProductNm(String productNm) {
         this.productNm = productNm == null ? null : productNm.trim();
     }
 
     /**
-     * 
-     * @return PRODUCT_KIND 
+     * 产品型号
+     * @return PRODUCT_KIND 产品型号
      */
     public String getProductKind() {
         return productKind;
     }
 
     /**
-     * 
-     * @param productKind 
+     * 产品型号
+     * @param productKind 产品型号
      */
     public void setProductKind(String productKind) {
         this.productKind = productKind == null ? null : productKind.trim();
     }
 
     /**
-     * 
-     * @return PRODUCT_THICKNESS 
+     * 产品厚度
+     * @return PRODUCT_THICKNESS 产品厚度
      */
     public String getProductThickness() {
         return productThickness;
     }
 
     /**
-     * 
-     * @param productThickness 
+     * 产品厚度
+     * @param productThickness 产品厚度
      */
     public void setProductThickness(String productThickness) {
         this.productThickness = productThickness == null ? null : productThickness.trim();
     }
 
     /**
-     * 
-     * @return PRODUCT_LENGTH 
+     * 产品长度
+     * @return PRODUCT_LENGTH 产品长度
      */
     public String getProductLength() {
         return productLength;
     }
 
     /**
-     * 
-     * @param productLength 
+     * 产品长度
+     * @param productLength 产品长度
      */
     public void setProductLength(String productLength) {
         this.productLength = productLength == null ? null : productLength.trim();
     }
 
     /**
-     * 
-     * @return SUPPLIER_NM 
+     * 供货商名称
+     * @return SUPPLIER_NM 供货商名称
      */
     public String getSupplierNm() {
         return supplierNm;
     }
 
     /**
-     * 
-     * @param supplierNm 
+     * 供货商名称
+     * @param supplierNm 供货商名称
      */
     public void setSupplierNm(String supplierNm) {
         this.supplierNm = supplierNm == null ? null : supplierNm.trim();
     }
 
     /**
-     * 
-     * @return SUPPLIER_CD 
+     * 供货商简码
+     * @return SUPPLIER_CD 供货商简码
      */
     public String getSupplierCd() {
         return supplierCd;
     }
 
     /**
-     * 
-     * @param supplierCd 
+     * 供货商简码
+     * @param supplierCd 供货商简码
      */
     public void setSupplierCd(String supplierCd) {
         this.supplierCd = supplierCd == null ? null : supplierCd.trim();
     }
 
     /**
-     * 
-     * @return SALE_PRICE 
+     * 出售单价
+     * @return SALE_PRICE 出售单价
      */
     public BigDecimal getSalePrice() {
         return salePrice;
     }
 
     /**
-     * 
-     * @param salePrice 
+     * 出售单价
+     * @param salePrice 出售单价
      */
     public void setSalePrice(BigDecimal salePrice) {
         this.salePrice = salePrice;
     }
 
     /**
-     * 
-     * @return SALE_TON_PRICE 
+     * 出售吨位价
+     * @return SALE_TON_PRICE 出售吨位价
      */
     public BigDecimal getSaleTonPrice() {
         return saleTonPrice;
     }
 
     /**
-     * 
-     * @param saleTonPrice 
+     * 出售吨位价
+     * @param saleTonPrice 出售吨位价
      */
     public void setSaleTonPrice(BigDecimal saleTonPrice) {
         this.saleTonPrice = saleTonPrice;
     }
 
     /**
-     * 
-     * @return SALE_NUM 
+     * 出售支数
+     * @return SALE_NUM 出售支数
      */
     public String getSaleNum() {
         return saleNum;
     }
 
     /**
-     * 
-     * @param saleNum 
+     * 出售支数
+     * @param saleNum 出售支数
      */
     public void setSaleNum(String saleNum) {
         this.saleNum = saleNum == null ? null : saleNum.trim();
     }
 
     /**
-     * 
-     * @return SALE_WEIGHT 
+     * 出售重量
+     * @return SALE_WEIGHT 出售重量
      */
     public String getSaleWeight() {
         return saleWeight;
     }
 
     /**
-     * 
-     * @param saleWeight 
+     * 出售重量
+     * @param saleWeight 出售重量
      */
     public void setSaleWeight(String saleWeight) {
         this.saleWeight = saleWeight == null ? null : saleWeight.trim();
     }
 
     /**
-     * 
-     * @return TRANS_NO 
+     * 流水号
+     * @return TRANS_JNNO 流水号
      */
-    public String getTransNo() {
-        return transNo;
+    public String getTransJnno() {
+        return transJnno;
     }
 
     /**
-     * 
-     * @param transNo 
+     * 流水号
+     * @param transJnno 流水号
      */
-    public void setTransNo(String transNo) {
-        this.transNo = transNo == null ? null : transNo.trim();
+    public void setTransJnno(String transJnno) {
+        this.transJnno = transJnno == null ? null : transJnno.trim();
     }
 
     /**
-     * 
-     * @return TRANS_DT 
+     * 交易日期
+     * @return TRANS_DT 交易日期
      */
     public String getTransDt() {
         return transDt;
     }
 
     /**
-     * 
-     * @param transDt 
+     * 交易日期
+     * @param transDt 交易日期
      */
     public void setTransDt(String transDt) {
         this.transDt = transDt == null ? null : transDt.trim();
     }
 
     /**
-     * 
-     * @return TRANS_TM 
+     * 交易时间
+     * @return TRANS_TM 交易时间
      */
     public String getTransTm() {
         return transTm;
     }
 
     /**
-     * 
-     * @param transTm 
+     * 交易时间
+     * @param transTm 交易时间
      */
     public void setTransTm(String transTm) {
         this.transTm = transTm == null ? null : transTm.trim();
     }
 
     /**
-     * 
-     * @return VERSION 
+     * 版本号
+     * @return VERSION 版本号
      */
     public Integer getVersion() {
         return version;
     }
 
     /**
-     * 
-     * @param version 
+     * 版本号
+     * @param version 版本号
      */
     public void setVersion(Integer version) {
         this.version = version;
     }
 
     /**
-     * 
-     * @return TRANS_CD 
+     * 交易码
+     * @return TRANS_CD 交易码
      */
     public String getTransCd() {
         return transCd;
     }
 
     /**
-     * 
-     * @param transCd 
+     * 交易码
+     * @param transCd 交易码
      */
     public void setTransCd(String transCd) {
         this.transCd = transCd == null ? null : transCd.trim();
@@ -425,7 +425,7 @@ public class TblOrderRecordOut implements Serializable {
         sb.append(", saleTonPrice=").append(saleTonPrice);
         sb.append(", saleNum=").append(saleNum);
         sb.append(", saleWeight=").append(saleWeight);
-        sb.append(", transNo=").append(transNo);
+        sb.append(", transJnno=").append(transJnno);
         sb.append(", transDt=").append(transDt);
         sb.append(", transTm=").append(transTm);
         sb.append(", version=").append(version);

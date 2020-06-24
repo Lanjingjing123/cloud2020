@@ -117,76 +117,6 @@ public class TblProdInventoryExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andProductNmIsNull() {
-            addCriterion("PRODUCT_NM is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductNmIsNotNull() {
-            addCriterion("PRODUCT_NM is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductNmEqualTo(String value) {
-            addCriterion("PRODUCT_NM =", value, "productNm");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductNmNotEqualTo(String value) {
-            addCriterion("PRODUCT_NM <>", value, "productNm");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductNmGreaterThan(String value) {
-            addCriterion("PRODUCT_NM >", value, "productNm");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductNmGreaterThanOrEqualTo(String value) {
-            addCriterion("PRODUCT_NM >=", value, "productNm");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductNmLessThan(String value) {
-            addCriterion("PRODUCT_NM <", value, "productNm");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductNmLessThanOrEqualTo(String value) {
-            addCriterion("PRODUCT_NM <=", value, "productNm");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductNmLike(String value) {
-            addCriterion("PRODUCT_NM like", value, "productNm");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductNmNotLike(String value) {
-            addCriterion("PRODUCT_NM not like", value, "productNm");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductNmIn(List<String> values) {
-            addCriterion("PRODUCT_NM in", values, "productNm");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductNmNotIn(List<String> values) {
-            addCriterion("PRODUCT_NM not in", values, "productNm");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductNmBetween(String value1, String value2) {
-            addCriterion("PRODUCT_NM between", value1, value2, "productNm");
-            return (Criteria) this;
-        }
-
-        public Criteria andProductNmNotBetween(String value1, String value2) {
-            addCriterion("PRODUCT_NM not between", value1, value2, "productNm");
-            return (Criteria) this;
-        }
-
         public Criteria andProductKindIsNull() {
             addCriterion("PRODUCT_KIND is null");
             return (Criteria) this;
@@ -254,6 +184,76 @@ public class TblProdInventoryExample {
 
         public Criteria andProductKindNotBetween(String value1, String value2) {
             addCriterion("PRODUCT_KIND not between", value1, value2, "productKind");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductNmIsNull() {
+            addCriterion("PRODUCT_NM is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductNmIsNotNull() {
+            addCriterion("PRODUCT_NM is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductNmEqualTo(String value) {
+            addCriterion("PRODUCT_NM =", value, "productNm");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductNmNotEqualTo(String value) {
+            addCriterion("PRODUCT_NM <>", value, "productNm");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductNmGreaterThan(String value) {
+            addCriterion("PRODUCT_NM >", value, "productNm");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductNmGreaterThanOrEqualTo(String value) {
+            addCriterion("PRODUCT_NM >=", value, "productNm");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductNmLessThan(String value) {
+            addCriterion("PRODUCT_NM <", value, "productNm");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductNmLessThanOrEqualTo(String value) {
+            addCriterion("PRODUCT_NM <=", value, "productNm");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductNmLike(String value) {
+            addCriterion("PRODUCT_NM like", value, "productNm");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductNmNotLike(String value) {
+            addCriterion("PRODUCT_NM not like", value, "productNm");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductNmIn(List<String> values) {
+            addCriterion("PRODUCT_NM in", values, "productNm");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductNmNotIn(List<String> values) {
+            addCriterion("PRODUCT_NM not in", values, "productNm");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductNmBetween(String value1, String value2) {
+            addCriterion("PRODUCT_NM between", value1, value2, "productNm");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductNmNotBetween(String value1, String value2) {
+            addCriterion("PRODUCT_NM not between", value1, value2, "productNm");
             return (Criteria) this;
         }
 

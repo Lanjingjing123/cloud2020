@@ -867,73 +867,73 @@ public class TblOrderRecordOutExample {
             return (Criteria) this;
         }
 
-        public Criteria andTransNoIsNull() {
-            addCriterion("TRANS_NO is null");
+        public Criteria andTransJnnoIsNull() {
+            addCriterion("TRANS_JNNO is null");
             return (Criteria) this;
         }
 
-        public Criteria andTransNoIsNotNull() {
-            addCriterion("TRANS_NO is not null");
+        public Criteria andTransJnnoIsNotNull() {
+            addCriterion("TRANS_JNNO is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTransNoEqualTo(String value) {
-            addCriterion("TRANS_NO =", value, "transNo");
+        public Criteria andTransJnnoEqualTo(String value) {
+            addCriterion("TRANS_JNNO =", value, "transJnno");
             return (Criteria) this;
         }
 
-        public Criteria andTransNoNotEqualTo(String value) {
-            addCriterion("TRANS_NO <>", value, "transNo");
+        public Criteria andTransJnnoNotEqualTo(String value) {
+            addCriterion("TRANS_JNNO <>", value, "transJnno");
             return (Criteria) this;
         }
 
-        public Criteria andTransNoGreaterThan(String value) {
-            addCriterion("TRANS_NO >", value, "transNo");
+        public Criteria andTransJnnoGreaterThan(String value) {
+            addCriterion("TRANS_JNNO >", value, "transJnno");
             return (Criteria) this;
         }
 
-        public Criteria andTransNoGreaterThanOrEqualTo(String value) {
-            addCriterion("TRANS_NO >=", value, "transNo");
+        public Criteria andTransJnnoGreaterThanOrEqualTo(String value) {
+            addCriterion("TRANS_JNNO >=", value, "transJnno");
             return (Criteria) this;
         }
 
-        public Criteria andTransNoLessThan(String value) {
-            addCriterion("TRANS_NO <", value, "transNo");
+        public Criteria andTransJnnoLessThan(String value) {
+            addCriterion("TRANS_JNNO <", value, "transJnno");
             return (Criteria) this;
         }
 
-        public Criteria andTransNoLessThanOrEqualTo(String value) {
-            addCriterion("TRANS_NO <=", value, "transNo");
+        public Criteria andTransJnnoLessThanOrEqualTo(String value) {
+            addCriterion("TRANS_JNNO <=", value, "transJnno");
             return (Criteria) this;
         }
 
-        public Criteria andTransNoLike(String value) {
-            addCriterion("TRANS_NO like", value, "transNo");
+        public Criteria andTransJnnoLike(String value) {
+            addCriterion("TRANS_JNNO like", value, "transJnno");
             return (Criteria) this;
         }
 
-        public Criteria andTransNoNotLike(String value) {
-            addCriterion("TRANS_NO not like", value, "transNo");
+        public Criteria andTransJnnoNotLike(String value) {
+            addCriterion("TRANS_JNNO not like", value, "transJnno");
             return (Criteria) this;
         }
 
-        public Criteria andTransNoIn(List<String> values) {
-            addCriterion("TRANS_NO in", values, "transNo");
+        public Criteria andTransJnnoIn(List<String> values) {
+            addCriterion("TRANS_JNNO in", values, "transJnno");
             return (Criteria) this;
         }
 
-        public Criteria andTransNoNotIn(List<String> values) {
-            addCriterion("TRANS_NO not in", values, "transNo");
+        public Criteria andTransJnnoNotIn(List<String> values) {
+            addCriterion("TRANS_JNNO not in", values, "transJnno");
             return (Criteria) this;
         }
 
-        public Criteria andTransNoBetween(String value1, String value2) {
-            addCriterion("TRANS_NO between", value1, value2, "transNo");
+        public Criteria andTransJnnoBetween(String value1, String value2) {
+            addCriterion("TRANS_JNNO between", value1, value2, "transJnno");
             return (Criteria) this;
         }
 
-        public Criteria andTransNoNotBetween(String value1, String value2) {
-            addCriterion("TRANS_NO not between", value1, value2, "transNo");
+        public Criteria andTransJnnoNotBetween(String value1, String value2) {
+            addCriterion("TRANS_JNNO not between", value1, value2, "transJnno");
             return (Criteria) this;
         }
 
