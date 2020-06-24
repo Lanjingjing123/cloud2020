@@ -1,5 +1,6 @@
 package com.huayi.ljj.springcloud.trans.service.impl;
 
+import com.huayi.ljj.springcloud.constant.EnumRespMsg;
 import com.huayi.ljj.springcloud.dao.TblManuFacturerParaMapper;
 import com.huayi.ljj.springcloud.model.TblManuFacturerPara;
 import com.huayi.ljj.springcloud.service.IServiceContext;
@@ -21,7 +22,7 @@ public class T40204Service extends BaseService {
     @Resource
     private TblManuFacturerParaMapper manuFacturerParaMapper;
     @Override
-    public void action(IServiceContext context) {
+    public void action (IServiceContext context) throws Exception{
         LOG.info("T40204 begin >>>>>>>>>>>>>>>>");
         Req40204 req =(Req40204) context.getBaseReq();
         LOG.info("========req:[{}]\n=========",req);
@@ -35,7 +36,9 @@ public class T40204Service extends BaseService {
         tblManuFacturerPara.setTransDt(DateUtil.getDate8());
         manuFacturerParaMapper.insert(tblManuFacturerPara);
 
-
+        // 交易成功
+        resp40204.setRespCode(EnumRespMsg.SUCCESS.getCode());
+        resp40204.setRespMsg(EnumRespMsg.SUCCESS.getMsg());
         context.setBaseResp(resp40204);
         LOG.info("T40204 end <<<<<<<<<<<<<<<<");
     }

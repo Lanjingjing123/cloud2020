@@ -2,7 +2,6 @@ package com.huayi.ljj.springcloud.controller;
 
 import com.huayi.ljj.springcloud.base.impl.GatewayCallService;
 import com.huayi.ljj.springcloud.constant.EnumRespMsg;
-import com.huayi.ljj.springcloud.model.Payment;
 import com.huayi.ljj.springcloud.pojo.CommonResult;
 import com.huayi.ljj.springcloud.pojo.req.BaseReq;
 import com.huayi.ljj.springcloud.pojo.resp.BaseResp;
@@ -13,10 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import java.util.Map;
 
 /**

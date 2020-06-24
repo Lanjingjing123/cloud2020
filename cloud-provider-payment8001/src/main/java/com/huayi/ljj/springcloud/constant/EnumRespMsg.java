@@ -17,7 +17,11 @@ public enum  EnumRespMsg {
     /**
      * 交易报文转换对应交易报文出错
      */
-    TRANS_MESSAGE("HY3002","交易报文转换对应交易报文出错")
+    TRANS_MESSAGE("HY3002","交易报文转换对应交易报文出错"),
+    /**
+     * 插入数据库失败
+     */
+    INSERT_DATABASE_FALIURE("DB1001","插入数据库失败")
     ;
     EnumRespMsg(String code,String msg){
         this.code = code;

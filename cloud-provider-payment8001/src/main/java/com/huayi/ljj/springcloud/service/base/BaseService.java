@@ -22,10 +22,10 @@ public abstract class BaseService implements IService {
     /**
      * 业务类重写此方法
      */
-    public abstract void action(IServiceContext context);
+    public abstract void action (IServiceContext context) throws Exception;
 
     @Override
-    public void execute(IServiceContext context) {
+    public void execute(IServiceContext context) throws Exception {
         TransactionStatus transactionStatus = null;
         /** 1.开启事务*/
         transactionStatus = enableTransAction(context);
@@ -64,7 +64,7 @@ public abstract class BaseService implements IService {
 
     /**
      *
-     * @param context
+     * @param transactionStatus
      */
     public void rollbackTransAction(TransactionStatus transactionStatus){
         LOG.info("transaction rollback begin >>>>>>>>>>>>>>>>>>");
@@ -74,7 +74,7 @@ public abstract class BaseService implements IService {
 
     /**
      *
-     * @param context
+     * @param transactionStatus
      */
     public void commitTransAction(TransactionStatus transactionStatus){
         LOG.info("transaction commit begin >>>>>>>>>>>>>>>>");

@@ -82,6 +82,7 @@ public class GatewayCallService implements IGatewayCallService {
 
         }
         context.setBaseReq(baseReq);
+        LOG.info("【平台请求报文】:[{}]",baseReq);
         LOG.info("=====【init】 初始化请求报文结束<<<<<<<<<<<<<<<<<<<<<<<<<<");
     }
 
@@ -99,7 +100,8 @@ public class GatewayCallService implements IGatewayCallService {
 
         tblTransLog.setOperatorId(baseReq.getCustomerNo());//用户号
         tblTransLog.setOperatorNm(baseReq.getCustomerNm());//用户名
-        tblTransLog.setEvent("init");
+        tblTransLog.setTransCd(baseReq.getTransCode());
+        tblTransLog.setEvent("before");
         tblTransLog.setTransNo(tranJnno);
         tblTransLog.setTransDt(DateUtil.getDate8());
         tblTransLog.setTransTm(DateUtil.getTime6());
@@ -156,6 +158,8 @@ public class GatewayCallService implements IGatewayCallService {
         baseResp.setCreateTime(DateUtil.getTime6());
 
         context.setBaseResp(baseResp);
+        LOG.info("【平台响应报文】:[{}]",baseResp);
+
         LOG.info("【after】 日志更新结束<<<<<<<<<<<<<<<<<<<<<<<");
     }
 }
