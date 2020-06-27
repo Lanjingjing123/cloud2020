@@ -33,6 +33,8 @@ public class T40106Service extends BaseService {
         Req40106 req40106 = (Req40106) context.getBaseReq();
         LOG.info("T40106 【请求参数】:[{}]",req40106);
 
+
+
         TblManuFacturerPara tblManuFacturerPara = new TblManuFacturerPara();
         tblManuFacturerPara.setManufacturerCode(req40106.getManufacturerCode());
         tblManuFacturerPara.setManufacturerNm(req40106.getManufacturerNm());

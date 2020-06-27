@@ -35,6 +35,7 @@ public abstract class BaseService implements IService {
              /** 3. 提交事务*/
              commitTransAction(transactionStatus);
 
+             // 4. 未发生一场
         }catch (Exception e){
 
             if (null!=transactionStatus){

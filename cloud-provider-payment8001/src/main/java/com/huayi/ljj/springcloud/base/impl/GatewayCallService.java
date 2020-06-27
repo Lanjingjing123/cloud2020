@@ -34,13 +34,14 @@ public class GatewayCallService implements IGatewayCallService {
         LOG.info("BasePortalTranferServiceImpl.execute begin>>>>>>>>>>>>>>>>>>>>");
         LOG.info("context:[{}]",context);
         try{
-            // 初始化请求报文，放入context中
+            // 1.初始化请求报文，放入context中
             init(context);
-            // 交易前日志报文处理
+            // 2.交易前日志报文处理
             before(context);
-            // 执行目标交易
+            // 3.执行目标交易
             action(context);
-
+            // 4.成功响应
+            successResp(context);
 
         }catch (Exception e){// 统一异常处理
             BaseResp baseResp = context.getBaseResp();
@@ -65,7 +66,11 @@ public class GatewayCallService implements IGatewayCallService {
         LOG.info("BasePortalTranferServiceImpl.execute end<<<<<<<<<<<<<<<<<<<<<<");
     }
 
-
+    /**
+     * 初始化报文处理
+     * @param context
+     * @throws BaseException
+     */
     public void init(IServiceContext context) throws BaseException {
         LOG.info("=====【init】 初始化请求报文开始>>>>>>>>>>>>>>>>>>>>>>>>");
         // 解析 reqMap
@@ -86,6 +91,10 @@ public class GatewayCallService implements IGatewayCallService {
         LOG.info("=====【init】 初始化请求报文结束<<<<<<<<<<<<<<<<<<<<<<<<<<");
     }
 
+    /**
+     * 交易业务前处理
+     * @param context
+     */
     public void before(IServiceContext context){
         // 记录日志
         LOG.info("【before】 日志记录开始>>>>>>>>>>>>>>>>>>>>>");
@@ -111,6 +120,11 @@ public class GatewayCallService implements IGatewayCallService {
         LOG.info("【before】 日志记录结束<<<<<<<<<<<<<<<<<<<<<<<");
     }
 
+    /**
+     * 目标业务流程
+     * @param context
+     * @throws Exception
+     */
     public void action(IServiceContext context) throws Exception{
         LOG.info("【action】 获取目标交易进行执行开始>>>>>>>>>>>>>>>>>>");
         BaseReq baseReq = context.getBaseReq();
@@ -136,6 +150,10 @@ public class GatewayCallService implements IGatewayCallService {
 
     }
 
+    /**
+     * 交易后处理流程
+     * @param context
+     */
     public void after(IServiceContext context){
         // 更新日志
         LOG.info("【after】 日志更新开始>>>>>>>>>>>>>>>>>>>>>");
@@ -161,6 +179,26 @@ public class GatewayCallService implements IGatewayCallService {
         LOG.info("【平台响应报文】:[{}]",baseResp);
 
         LOG.info("【after】 日志更新结束<<<<<<<<<<<<<<<<<<<<<<<");
+    }
+
+
+    /**
+     * 交易成功，若为设置响应码，
+     * 则初始化 000000 - 成功
+     * @param context
+     */
+    public void successResp(IServiceContext context){
+        BaseResp baseResp = context.getBaseResp();
+        if (baseResp == null){
+            baseResp = new BaseResp();
+        }
+        if (baseResp.getRespCode()==null){
+            LOG.info("");
+            baseResp.setRespCode(EnumRespMsg.SUCCESS.getCode());
+            baseResp.setRespMsg(EnumRespMsg.SUCCESS.getMsg());
+        }
+        context.setBaseResp(baseResp);
+
     }
 }
 

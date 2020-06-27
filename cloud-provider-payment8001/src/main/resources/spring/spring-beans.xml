@@ -10,6 +10,7 @@
         <property name="serviceMap">
             <map>
                 <entry key="40204" value="t40204"></entry>
+                <entry key="40106" value="t40106"></entry>
             </map>
         </property>
     </bean>
