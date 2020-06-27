@@ -1,0 +1,28 @@
+16:04:00.037 [http-nio-8001-exec-2] INFO  PaymentController -============【原始请求】:{transCode=40204, createData=20200522, customerNm=张三, customerNo=2234, orderNo=128309128}============
+16:04:00.043 [http-nio-8001-exec-2] INFO  PaymentController -调用BasePortalTransferServiceImpl,服务前统一入口接入处理>>>>>>>>>>>
+16:04:00.043 [http-nio-8001-exec-2] INFO  GatewayCallService -BasePortalTranferServiceImpl.execute begin>>>>>>>>>>>>>>>>>>>>
+16:04:00.043 [http-nio-8001-exec-2] INFO  GatewayCallService -context:[BaseServiceContext{baseReq=null, baseResp=null, parameterMap={a=123, reqMap={transCode=40204, createData=20200522, customerNm=张三, customerNo=2234, orderNo=128309128}, b=234}}]
+16:04:00.044 [http-nio-8001-exec-2] INFO  GatewayCallService -=====【init】 初始化请求报文开始>>>>>>>>>>>>>>>>>>>>>>>>
+16:04:00.044 [http-nio-8001-exec-2] INFO  GatewayCallService -=========需要转换为对应请求的【交易码】:[40204]==========
+16:04:00.073 [http-nio-8001-exec-2] INFO  GatewayCallService -=====【init】 初始化请求报文结束<<<<<<<<<<<<<<<<<<<<<<<<<<
+16:04:00.073 [http-nio-8001-exec-2] INFO  GatewayCallService -【before】 日志记录开始>>>>>>>>>>>>>>>>>>>>>
+16:04:00.074 [http-nio-8001-exec-2] INFO  GatewayCallService -========【后台交易流水号】：[2020062416040076054544150]
+16:04:00.106 [http-nio-8001-exec-2] ERROR DruidDataSource -testWhileIdle is true, validationQuery not set
+16:04:00.109 [http-nio-8001-exec-2] INFO  DruidDataSource -{dataSource-1} inited
+16:04:00.355 [http-nio-8001-exec-2] INFO  GatewayCallService -【before】 日志记录结束<<<<<<<<<<<<<<<<<<<<<<<
+16:04:00.355 [http-nio-8001-exec-2] INFO  GatewayCallService -【action】 获取目标交易进行执行开始>>>>>>>>>>>>>>>>>>
+16:04:00.355 [http-nio-8001-exec-2] INFO  GatewayCallService -========执行交易码[40204]========
+16:04:00.355 [http-nio-8001-exec-2] INFO  BaseService -enable transaction begin >>>>>>>>>>>>>>>>>>>>>>>>>>
+16:04:00.360 [http-nio-8001-exec-2] INFO  BaseService -enable transaction end <<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+16:04:00.360 [http-nio-8001-exec-2] INFO  T40204Service -T40204 begin >>>>>>>>>>>>>>>>
+16:04:00.360 [http-nio-8001-exec-2] INFO  T40204Service -========req:[Req40204(orderNo=128309128, kinds=null)]
+=========
+16:04:00.367 [http-nio-8001-exec-2] INFO  T40204Service -T40204 end <<<<<<<<<<<<<<<<
+16:04:00.367 [http-nio-8001-exec-2] INFO  BaseService -transaction commit begin >>>>>>>>>>>>>>>>
+16:04:00.370 [http-nio-8001-exec-2] INFO  BaseService -transaction commit end <<<<<<<<<<<<<<<<<<
+16:04:00.370 [http-nio-8001-exec-2] INFO  GatewayCallService -【action】 获取目标交易进行执行结束<<<<<<<<<<<<<<<<<<<<<
+16:04:00.370 [http-nio-8001-exec-2] INFO  GatewayCallService -【after】 日志更新开始>>>>>>>>>>>>>>>>>>>>>
+16:04:00.373 [http-nio-8001-exec-2] INFO  GatewayCallService -【after】 日志更新结束<<<<<<<<<<<<<<<<<<<<<<<
+16:04:00.373 [http-nio-8001-exec-2] INFO  GatewayCallService -BasePortalTranferServiceImpl.execute end<<<<<<<<<<<<<<<<<<<<<<
+16:04:00.373 [http-nio-8001-exec-2] INFO  PaymentController -调用BasePortalTransferServiceImpl,服务统一入口接入处理结束<<<<<<<<<<<<<<
+16:04:00.373 [http-nio-8001-exec-2] INFO  PaymentController -======平台响应信息[Resp40204(orderNo=128309128)]======
