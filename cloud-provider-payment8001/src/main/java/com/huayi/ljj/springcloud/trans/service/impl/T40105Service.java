@@ -6,6 +6,7 @@ import com.huayi.ljj.springcloud.pojo.req.BaseReq;
 import com.huayi.ljj.springcloud.service.IServiceContext;
 import com.huayi.ljj.springcloud.service.base.BaseService;
 import com.huayi.ljj.springcloud.trans.pojo.req.Req40105;
+import com.huayi.ljj.springcloud.util.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -26,10 +27,20 @@ public class T40105Service extends BaseService {
     @Override
     public void action(IServiceContext context) throws Exception {
         LOG.info("【T40105】 begin >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        Req40105 baseReq = (Req40105) context.getBaseReq();
+        Req40105 req40105 = (Req40105) context.getBaseReq();
         TblProdNamePara tblProdNamePara = new TblProdNamePara();
-        tblProdNamePara.setProductNo(baseReq.getProductNo());
+        tblProdNamePara.setProductNo(req40105.getProductNo());
+        tblProdNamePara.setProductNm(req40105.getProductNm());
+        tblProdNamePara.setProductActulWeight(req40105.getProductActulWeight());
+        tblProdNamePara.setProductKind(req40105.getProductKind());
+        tblProdNamePara.setProductLength(req40105.getProductLength());
+        tblProdNamePara.setProductTheoryWeight(req40105.getProductTheoryWeight());
+        tblProdNamePara.setProductThickness(tblProdNamePara.getProductThickness());
 
+
+        tblProdNamePara.setCreatDt(DateUtil.getDate8());
+        tblProdNamePara.setTransDt(DateUtil.getDate8());
+        tblProdNamePara.setTransTm(DateUtil.getTime6());
         int count = prodNameParaMapper.insert(tblProdNamePara);
 
 
