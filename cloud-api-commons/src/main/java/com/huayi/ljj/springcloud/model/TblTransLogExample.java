@@ -466,6 +466,76 @@ public class TblTransLogExample {
             return (Criteria) this;
         }
 
+        public Criteria andTransCdIsNull() {
+            addCriterion("TRANS_CD is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransCdIsNotNull() {
+            addCriterion("TRANS_CD is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransCdEqualTo(String value) {
+            addCriterion("TRANS_CD =", value, "transCd");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransCdNotEqualTo(String value) {
+            addCriterion("TRANS_CD <>", value, "transCd");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransCdGreaterThan(String value) {
+            addCriterion("TRANS_CD >", value, "transCd");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransCdGreaterThanOrEqualTo(String value) {
+            addCriterion("TRANS_CD >=", value, "transCd");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransCdLessThan(String value) {
+            addCriterion("TRANS_CD <", value, "transCd");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransCdLessThanOrEqualTo(String value) {
+            addCriterion("TRANS_CD <=", value, "transCd");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransCdLike(String value) {
+            addCriterion("TRANS_CD like", value, "transCd");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransCdNotLike(String value) {
+            addCriterion("TRANS_CD not like", value, "transCd");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransCdIn(List<String> values) {
+            addCriterion("TRANS_CD in", values, "transCd");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransCdNotIn(List<String> values) {
+            addCriterion("TRANS_CD not in", values, "transCd");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransCdBetween(String value1, String value2) {
+            addCriterion("TRANS_CD between", value1, value2, "transCd");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransCdNotBetween(String value1, String value2) {
+            addCriterion("TRANS_CD not between", value1, value2, "transCd");
+            return (Criteria) this;
+        }
+
         public Criteria andProdCdIsNull() {
             addCriterion("PROD_CD is null");
             return (Criteria) this;

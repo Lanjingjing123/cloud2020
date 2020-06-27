@@ -29,6 +29,11 @@ public class TblTransLog implements Serializable {
     private String orderNo;
 
     /**
+     * 
+     */
+    private String transCd;
+
+    /**
      * 产品号
      */
     private String prodCd;
@@ -129,6 +134,22 @@ public class TblTransLog implements Serializable {
     }
 
     /**
+     * 
+     * @return TRANS_CD 
+     */
+    public String getTransCd() {
+        return transCd;
+    }
+
+    /**
+     * 
+     * @param transCd 
+     */
+    public void setTransCd(String transCd) {
+        this.transCd = transCd == null ? null : transCd.trim();
+    }
+
+    /**
      * 产品号
      * @return PROD_CD 产品号
      */
@@ -187,6 +208,7 @@ public class TblTransLog implements Serializable {
         sb.append(", transTm=").append(transTm);
         sb.append(", event=").append(event);
         sb.append(", orderNo=").append(orderNo);
+        sb.append(", transCd=").append(transCd);
         sb.append(", prodCd=").append(prodCd);
         sb.append(", operatorNm=").append(operatorNm);
         sb.append(", operatorId=").append(operatorId);

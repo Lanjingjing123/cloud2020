@@ -7,6 +7,7 @@
     <result column="TRANS_TM" jdbcType="VARCHAR" property="transTm" />
     <result column="EVENT" jdbcType="VARCHAR" property="event" />
     <result column="ORDER_NO" jdbcType="VARCHAR" property="orderNo" />
+    <result column="TRANS_CD" jdbcType="VARCHAR" property="transCd" />
     <result column="PROD_CD" jdbcType="VARCHAR" property="prodCd" />
     <result column="OPERATOR_NM" jdbcType="VARCHAR" property="operatorNm" />
     <result column="OPERATOR_ID" jdbcType="VARCHAR" property="operatorId" />
@@ -70,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    TRANS_NO, TRANS_DT, TRANS_TM, EVENT, ORDER_NO, PROD_CD, OPERATOR_NM, OPERATOR_ID
+    TRANS_NO, TRANS_DT, TRANS_TM, EVENT, ORDER_NO, TRANS_CD, PROD_CD, OPERATOR_NM, OPERATOR_ID
   </sql>
   <select id="selectByExample" parameterType="com.huayi.ljj.springcloud.model.TblTransLogExample" resultMap="BaseResultMap">
     select
@@ -104,11 +105,13 @@
   </delete>
   <insert id="insert" parameterType="com.huayi.ljj.springcloud.model.TblTransLog">
     insert into tbl_trans_log (TRANS_NO, TRANS_DT, TRANS_TM, 
-      EVENT, ORDER_NO, PROD_CD, 
-      OPERATOR_NM, OPERATOR_ID)
+      EVENT, ORDER_NO, TRANS_CD, 
+      PROD_CD, OPERATOR_NM, OPERATOR_ID
+      )
     values (#{transNo,jdbcType=VARCHAR}, #{transDt,jdbcType=VARCHAR}, #{transTm,jdbcType=VARCHAR}, 
-      #{event,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{prodCd,jdbcType=VARCHAR}, 
-      #{operatorNm,jdbcType=VARCHAR}, #{operatorId,jdbcType=VARCHAR})
+      #{event,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{transCd,jdbcType=VARCHAR}, 
+      #{prodCd,jdbcType=VARCHAR}, #{operatorNm,jdbcType=VARCHAR}, #{operatorId,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.huayi.ljj.springcloud.model.TblTransLog">
     insert into tbl_trans_log
@@ -127,6 +130,9 @@
       </if>
       <if test="orderNo != null">
         ORDER_NO,
+      </if>
+      <if test="transCd != null">
+        TRANS_CD,
       </if>
       <if test="prodCd != null">
         PROD_CD,
@@ -153,6 +159,9 @@
       </if>
       <if test="orderNo != null">
         #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transCd != null">
+        #{transCd,jdbcType=VARCHAR},
       </if>
       <if test="prodCd != null">
         #{prodCd,jdbcType=VARCHAR},
@@ -189,259 +198,8 @@
       <if test="record.orderNo != null">
         ORDER_NO = #{record.orderNo,jdbcType=VARCHAR},
       </if>
-      <if test="record.prodCd != null">
-        PROD_CD = #{record.prodCd,jdbcType=VARCHAR},
-      </if>
-      <if test="record.operatorNm != null">
-        OPERATOR_NM = #{record.operatorNm,jdbcType=VARCHAR},
-      </if>
-      <if test="record.operatorId != null">
-        OPERATOR_ID = #{record.operatorId,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update tbl_trans_log
-    set TRANS_NO = #{record.transNo,jdbcType=VARCHAR},
-      TRANS_DT = #{record.transDt,jdbcType=VARCHAR},
-      TRANS_TM = #{record.transTm,jdbcType=VARCHAR},
-      EVENT = #{record.event,jdbcType=VARCHAR},
-      ORDER_NO = #{record.orderNo,jdbcType=VARCHAR},
-      PROD_CD = #{record.prodCd,jdbcType=VARCHAR},
-      OPERATOR_NM = #{record.operatorNm,jdbcType=VARCHAR},
-      OPERATOR_ID = #{record.operatorId,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.huayi.ljj.springcloud.model.TblTransLog">
-    update tbl_trans_log
-    <set>
-      <if test="transDt != null">
-        TRANS_DT = #{transDt,jdbcType=VARCHAR},
-      </if>
-      <if test="transTm != null">
-        TRANS_TM = #{transTm,jdbcType=VARCHAR},
-      </if>
-      <if test="event != null">
-        EVENT = #{event,jdbcType=VARCHAR},
-      </if>
-      <if test="orderNo != null">
-        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
-      </if>
-      <if test="prodCd != null">
-        PROD_CD = #{prodCd,jdbcType=VARCHAR},
-      </if>
-      <if test="operatorNm != null">
-        OPERATOR_NM = #{operatorNm,jdbcType=VARCHAR},
-      </if>
-      <if test="operatorId != null">
-        OPERATOR_ID = #{operatorId,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where TRANS_NO = #{transNo,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.huayi.ljj.springcloud.model.TblTransLog">
-    update tbl_trans_log
-    set TRANS_DT = #{transDt,jdbcType=VARCHAR},
-      TRANS_TM = #{transTm,jdbcType=VARCHAR},
-      EVENT = #{event,jdbcType=VARCHAR},
-      ORDER_NO = #{orderNo,jdbcType=VARCHAR},
-      PROD_CD = #{prodCd,jdbcType=VARCHAR},
-      OPERATOR_NM = #{operatorNm,jdbcType=VARCHAR},
-      OPERATOR_ID = #{operatorId,jdbcType=VARCHAR}
-    where TRANS_NO = #{transNo,jdbcType=VARCHAR}
-  </update>
-  <resultMap id="BaseResultMap" type="com.huayi.ljj.springcloud.model.TblTransLog">
-    <id column="TRANS_NO" jdbcType="VARCHAR" property="transNo" />
-    <result column="TRANS_DT" jdbcType="VARCHAR" property="transDt" />
-    <result column="TRANS_TM" jdbcType="VARCHAR" property="transTm" />
-    <result column="EVENT" jdbcType="VARCHAR" property="event" />
-    <result column="ORDER_NO" jdbcType="VARCHAR" property="orderNo" />
-    <result column="PROD_CD" jdbcType="VARCHAR" property="prodCd" />
-    <result column="OPERATOR_NM" jdbcType="VARCHAR" property="operatorNm" />
-    <result column="OPERATOR_ID" jdbcType="VARCHAR" property="operatorId" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    TRANS_NO, TRANS_DT, TRANS_TM, EVENT, ORDER_NO, PROD_CD, OPERATOR_NM, OPERATOR_ID
-  </sql>
-  <select id="selectByExample" parameterType="com.huayi.ljj.springcloud.model.TblTransLogExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from tbl_trans_log
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from tbl_trans_log
-    where TRANS_NO = #{transNo,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from tbl_trans_log
-    where TRANS_NO = #{transNo,jdbcType=VARCHAR}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.huayi.ljj.springcloud.model.TblTransLogExample">
-    delete from tbl_trans_log
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.huayi.ljj.springcloud.model.TblTransLog">
-    insert into tbl_trans_log (TRANS_NO, TRANS_DT, TRANS_TM, 
-      EVENT, ORDER_NO, PROD_CD, 
-      OPERATOR_NM, OPERATOR_ID)
-    values (#{transNo,jdbcType=VARCHAR}, #{transDt,jdbcType=VARCHAR}, #{transTm,jdbcType=VARCHAR}, 
-      #{event,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{prodCd,jdbcType=VARCHAR}, 
-      #{operatorNm,jdbcType=VARCHAR}, #{operatorId,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.huayi.ljj.springcloud.model.TblTransLog">
-    insert into tbl_trans_log
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="transNo != null">
-        TRANS_NO,
-      </if>
-      <if test="transDt != null">
-        TRANS_DT,
-      </if>
-      <if test="transTm != null">
-        TRANS_TM,
-      </if>
-      <if test="event != null">
-        EVENT,
-      </if>
-      <if test="orderNo != null">
-        ORDER_NO,
-      </if>
-      <if test="prodCd != null">
-        PROD_CD,
-      </if>
-      <if test="operatorNm != null">
-        OPERATOR_NM,
-      </if>
-      <if test="operatorId != null">
-        OPERATOR_ID,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="transNo != null">
-        #{transNo,jdbcType=VARCHAR},
-      </if>
-      <if test="transDt != null">
-        #{transDt,jdbcType=VARCHAR},
-      </if>
-      <if test="transTm != null">
-        #{transTm,jdbcType=VARCHAR},
-      </if>
-      <if test="event != null">
-        #{event,jdbcType=VARCHAR},
-      </if>
-      <if test="orderNo != null">
-        #{orderNo,jdbcType=VARCHAR},
-      </if>
-      <if test="prodCd != null">
-        #{prodCd,jdbcType=VARCHAR},
-      </if>
-      <if test="operatorNm != null">
-        #{operatorNm,jdbcType=VARCHAR},
-      </if>
-      <if test="operatorId != null">
-        #{operatorId,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.huayi.ljj.springcloud.model.TblTransLogExample" resultType="java.lang.Long">
-    select count(*) from tbl_trans_log
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update tbl_trans_log
-    <set>
-      <if test="record.transNo != null">
-        TRANS_NO = #{record.transNo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.transDt != null">
-        TRANS_DT = #{record.transDt,jdbcType=VARCHAR},
-      </if>
-      <if test="record.transTm != null">
-        TRANS_TM = #{record.transTm,jdbcType=VARCHAR},
-      </if>
-      <if test="record.event != null">
-        EVENT = #{record.event,jdbcType=VARCHAR},
-      </if>
-      <if test="record.orderNo != null">
-        ORDER_NO = #{record.orderNo,jdbcType=VARCHAR},
+      <if test="record.transCd != null">
+        TRANS_CD = #{record.transCd,jdbcType=VARCHAR},
       </if>
       <if test="record.prodCd != null">
         PROD_CD = #{record.prodCd,jdbcType=VARCHAR},
@@ -464,6 +222,7 @@
       TRANS_TM = #{record.transTm,jdbcType=VARCHAR},
       EVENT = #{record.event,jdbcType=VARCHAR},
       ORDER_NO = #{record.orderNo,jdbcType=VARCHAR},
+      TRANS_CD = #{record.transCd,jdbcType=VARCHAR},
       PROD_CD = #{record.prodCd,jdbcType=VARCHAR},
       OPERATOR_NM = #{record.operatorNm,jdbcType=VARCHAR},
       OPERATOR_ID = #{record.operatorId,jdbcType=VARCHAR}
@@ -486,6 +245,9 @@
       <if test="orderNo != null">
         ORDER_NO = #{orderNo,jdbcType=VARCHAR},
       </if>
+      <if test="transCd != null">
+        TRANS_CD = #{transCd,jdbcType=VARCHAR},
+      </if>
       <if test="prodCd != null">
         PROD_CD = #{prodCd,jdbcType=VARCHAR},
       </if>
@@ -504,6 +266,7 @@
       TRANS_TM = #{transTm,jdbcType=VARCHAR},
       EVENT = #{event,jdbcType=VARCHAR},
       ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      TRANS_CD = #{transCd,jdbcType=VARCHAR},
       PROD_CD = #{prodCd,jdbcType=VARCHAR},
       OPERATOR_NM = #{operatorNm,jdbcType=VARCHAR},
       OPERATOR_ID = #{operatorId,jdbcType=VARCHAR}
