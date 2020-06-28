@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Req40105 extends BaseReq {
+    private static final long serialVersionUID = 7518923494933787965L;
     /**
      * 产品编号
      */

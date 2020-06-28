@@ -8,6 +8,7 @@ import com.huayi.ljj.springcloud.pojo.resp.BaseResp;
  * @date 2020/6/27
  */
 public class Resp40105 extends BaseResp {
+    private static final long serialVersionUID = -5859567475401123533L;
     /**
      * 产品编号
      */
