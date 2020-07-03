@@ -9,7 +9,10 @@ import com.huayi.ljj.springcloud.trans.pojo.req.Req40105;
 import com.huayi.ljj.springcloud.util.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 /**
  * @author lanjingjing
@@ -22,26 +25,35 @@ public class T40105Service extends BaseService {
 
     private static final Logger LOG = LoggerFactory.getLogger(T40105Service.class);
 
+    @Resource
     private TblProdNameParaMapper prodNameParaMapper;
 
     @Override
     public void action(IServiceContext context) throws Exception {
         LOG.info("【T40105】 begin >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        Req40105 req40105 = (Req40105) context.getBaseReq();
-        TblProdNamePara tblProdNamePara = new TblProdNamePara();
-        tblProdNamePara.setProductNo(req40105.getProductNo());
-        tblProdNamePara.setProductNm(req40105.getProductNm());
-        tblProdNamePara.setProductActulWeight(req40105.getProductActulWeight());
-        tblProdNamePara.setProductKind(req40105.getProductKind());
-        tblProdNamePara.setProductLength(req40105.getProductLength());
-        tblProdNamePara.setProductTheoryWeight(req40105.getProductTheoryWeight());
-        tblProdNamePara.setProductThickness(tblProdNamePara.getProductThickness());
+
+        try{
+
+            Req40105 req40105 = (Req40105) context.getBaseReq();
+            TblProdNamePara tblProdNamePara = new TblProdNamePara();
+            tblProdNamePara.setProductNo(req40105.getProductNo());
+            tblProdNamePara.setProductNm(req40105.getProductNm());
+            tblProdNamePara.setProductActulWeight(req40105.getProductActulWeight());
+            tblProdNamePara.setProductThickness(req40105.getProductThickness());
+            tblProdNamePara.setProductKind(req40105.getProductKind());
+            tblProdNamePara.setProductLength(req40105.getProductLength());
+            tblProdNamePara.setProductTheoryWeight(req40105.getProductTheoryWeight());
+            tblProdNamePara.setProductThickness(tblProdNamePara.getProductThickness());
 
 
-        tblProdNamePara.setCreatDt(DateUtil.getDate8());
-        tblProdNamePara.setTransDt(DateUtil.getDate8());
-        tblProdNamePara.setTransTm(DateUtil.getTime6());
-        int count = prodNameParaMapper.insert(tblProdNamePara);
+            tblProdNamePara.setCreatDt(DateUtil.getDate8());
+            tblProdNamePara.setTransDt(DateUtil.getDate8());
+            tblProdNamePara.setTransTm(DateUtil.getTime6());
+            int count = prodNameParaMapper.insert(tblProdNamePara);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw e;
+        }
 
 
         LOG.info("【T40105】 end <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
