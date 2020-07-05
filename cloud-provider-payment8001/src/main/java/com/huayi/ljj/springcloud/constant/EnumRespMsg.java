@@ -21,7 +21,9 @@ public enum  EnumRespMsg {
     /**
      * 插入数据库失败
      */
-    INSERT_DATABASE_FALIURE("DB1001","插入数据库失败")
+    INSERT_DATABASE_FALIURE("DB1001","插入数据库失败"),
+
+    DB_NOT_DATA("DB1002","数据库无记录")
     ;
     EnumRespMsg(String code,String msg){
         this.code = code;
