@@ -1,0 +1,68 @@
+{
+	"info": {
+		"_postman_id": "688ba33a-bbcf-41b2-a6c0-4f5384a938e9",
+		"name": "TransTest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "40105",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"transCode\":\"40105\",\r\n\t\"createData\":\"20200522\",\r\n\t\"customerNm\":\"李四\",\r\n\t\"customerNo\":\"2234\",\r\n\r\n    \"productNo\":\"FANGGUAN\",\r\n    \"productNm\":\"方管\",\r\n    \"productKind\":\"20*20\",\r\n    \"productThickness\":\"1.0\",\r\n    \"productLength\":\"6\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8001/test2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"test2"
+					]
+				},
+				"description": "40105交易测试"
+			},
+			"response": []
+		},
+		{
+			"name": "40801",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"transCode\":\"40801\",\r\n\t\"createData\":\"20200522\",\r\n\t\"customerNm\":\"李四\",\r\n\t\"customerNo\":\"2234\",\r\n\r\n    \"productNo\":\"FANGGUAN_002\",\r\n    \"productNm\":\"方管\",\r\n    \"productKind\":\"20*30\",\r\n    \"productThickness\":\"1.5\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8001/test2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8001",
+					"path": [
+						"test2"
+					]
+				},
+				"description": "查询产品种类信息"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
