@@ -4,6 +4,8 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         https://www.springframework.org/schema/beans/spring-beans.xsd">
 
+    <!-- 引入线程池 -->
+    <import resource="classpath:/spring/threadpool-config.xml"/>
     <!-- services -->
 
     <bean id="baseServiceFactory" class="com.huayi.ljj.springcloud.service.BaseServiceFactory" lazy-init="false">

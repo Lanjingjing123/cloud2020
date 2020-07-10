@@ -11,10 +11,25 @@ spring:
 #    type: com.alibaba.druid.pool.DruidDataSource    #当前数据源操作类型
     driver-class-name: org.gjt.mm.mysql.Driver      #mysql驱动包
     url: jdbc:mysql://127.0.0.1:3306/db2019?useUnicode=true&characterEncoding=utf-8&useSSL=false
-#    username: ljj
-#    password: ljj
-    username: root
-    password: 123456
+# thinkpad-470
+    username: ljj
+    password: ljj
+# redis
+  redis:
+    database: 0
+    host: 192.168.43.111
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 200
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+    timeout: 2000ms
+# dell
+#    username: root
+#    password: 123456
 
 mybatis:
 #  mapper-locations: /mapper/*.xml
@@ -37,3 +52,14 @@ eureka:
 #  file:
 #    path:
 #  config: classpath:logback.xml
+
+
+# threadPool config
+threadpool:
+  corePoolSize: 4 #  核心线程数
+  maxPoolSize: 20 # 最大线程数
+  queueCapacity: 20 # 队列最大长度
+  keepAliveSeconds: 60 # 线程池维护线程所允许的空闲时间，默认为60s
+
+
+
