@@ -10,6 +10,9 @@ import org.springframework.transaction.TransactionStatus;
 
 import javax.annotation.Resource;
 
+/**
+ * 此类是业务类基类，用于提交回滚事务
+ */
 public abstract class BaseService implements IService {
 
     private static final Logger LOG = LoggerFactory.getLogger(BaseService.class);
