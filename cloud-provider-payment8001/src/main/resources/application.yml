@@ -62,4 +62,12 @@ threadpool:
   keepAliveSeconds: 60 # 线程池维护线程所允许的空闲时间，默认为60s
 
 
-
+#  file:
+#    path: com.huayi.ljj.springcloud.dao
+logging:
+  level:
+    com:
+      huayi:
+        ljj:
+          springcloud:
+            dao: debug

@@ -7,6 +7,7 @@ import com.huayi.ljj.springcloud.model.TblProdNamePara;
 import com.huayi.ljj.springcloud.model.TblProdNameParaExample;
 import com.huayi.ljj.springcloud.pojo.req.BaseReq;
 import com.huayi.ljj.springcloud.service.IServiceContext;
+import com.huayi.ljj.springcloud.service.base.BaseQueryService;
 import com.huayi.ljj.springcloud.service.base.BaseService;
 import com.huayi.ljj.springcloud.trans.pojo.req.Req40801;
 import com.huayi.ljj.springcloud.trans.pojo.resp.Resp40801;
@@ -25,7 +26,7 @@ import java.util.List;
  * @doc 查询产品种类信息
  */
 @Service("t40801")
-public class T40801Service extends BaseService {
+public class T40801Service extends BaseQueryService {
     private static final Logger LOG = LoggerFactory.getLogger(T40801Service.class);
 
     @Resource
@@ -37,32 +38,31 @@ public class T40801Service extends BaseService {
 
 
 
+
         Req40801 req = (Req40801) context.getBaseReq();
 
         Resp40801 resp = new Resp40801();
 
         List<TblProdNamePara> list = this.queryData(req);
-        if (list == null){
+        if (list == null||list.size()<=0){
             LOG.info("=============数据库无记录=================");
         }
 
-        if (list!=null){
-            LOG.info("数据库记录:[{}]",list);
-            List<Resp40801List1> respList=new ArrayList<>();
-            Resp40801List1 item = new Resp40801List1();
-            list.forEach(tblProdNamePara->{
-                item.setProductNo(tblProdNamePara.getProductNo());
-                item.setProductKind(tblProdNamePara.getProductKind());
-                item.setProductActulWeight(tblProdNamePara.getProductActulWeight());
-                item.setProductTheoryWeight(tblProdNamePara.getProductTheoryWeight());
-                item.setProductNm(tblProdNamePara.getProductNm());
-                item.setProductLength(tblProdNamePara.getProductLength());
-                item.setProductThickness(tblProdNamePara.getProductThickness());
-                respList.add(item);
-            });
+        LOG.info("数据库记录:[{}]",list);
+        List<Resp40801List1> respList=new ArrayList<>();
+        Resp40801List1 item = new Resp40801List1();
+        list.forEach(tblProdNamePara->{
+            item.setProductNo(tblProdNamePara.getProductNo());
+            item.setProductKind(tblProdNamePara.getProductKind());
+            item.setProductActulWeight(tblProdNamePara.getProductActulWeight());
+            item.setProductTheoryWeight(tblProdNamePara.getProductTheoryWeight());
+            item.setProductNm(tblProdNamePara.getProductNm());
+            item.setProductLength(tblProdNamePara.getProductLength());
+            item.setProductThickness(tblProdNamePara.getProductThickness());
+            respList.add(item);
+        });
 
-            resp.setList(respList);
-        }
+        resp.setList(respList);
 
 
         context.setBaseResp(resp);
