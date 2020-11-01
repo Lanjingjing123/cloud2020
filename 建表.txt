@@ -1,0 +1,119 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : loaclhost_ljj
+Source Server Version : 50703
+Source Host           : localhost:3306
+Source Database       : db2019
+
+Target Server Type    : MYSQL
+Target Server Version : 50703
+File Encoding         : 65001
+
+Date: 2020-11-01 17:19:04
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `buy_trans`
+-- ----------------------------
+DROP TABLE IF EXISTS `buy_trans`;
+CREATE TABLE `buy_trans` (
+  `COMPANY` varchar(255) DEFAULT '' COMMENT '进货公司',
+  `GOODS_NM` varchar(255) DEFAULT '' COMMENT '货名',
+  `SPECIFICATION` varchar(128) DEFAULT '' COMMENT '规格',
+  `THICKNESS` varchar(10) DEFAULT '' COMMENT '厚度',
+  `quantity_per` decimal(10,0) DEFAULT '0' COMMENT '每件支数',
+  `NUMBER_OF_CASES` decimal(10,0) DEFAULT '0' COMMENT '件数',
+  `quanlity` decimal(10,0) DEFAULT '0' COMMENT '总支数',
+  `total_weight` decimal(14,4) DEFAULT '0.0000' COMMENT '总重',
+  `price` decimal(14,4) DEFAULT '0.0000' COMMENT '进价单价',
+  `total_amount` decimal(14,4) DEFAULT '0.0000' COMMENT '进价总金额',
+  `fee` decimal(10,4) DEFAULT '0.0000' COMMENT '货、搬运费',
+  `weight_per` decimal(10,4) DEFAULT '0.0000' COMMENT '单支重量',
+  `cost_price` decimal(10,4) DEFAULT '0.0000' COMMENT '成本价格',
+  `memo` varchar(128) DEFAULT '' COMMENT '备注',
+  `TRAN_DT` varchar(8) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+
+
+
+
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : loaclhost_ljj
+Source Server Version : 50703
+Source Host           : localhost:3306
+Source Database       : db2019
+
+Target Server Type    : MYSQL
+Target Server Version : 50703
+File Encoding         : 65001
+
+Date: 2020-11-01 17:20:51
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `sale_trans`
+-- ----------------------------
+DROP TABLE IF EXISTS `sale_trans`;
+CREATE TABLE `sale_trans` (
+  `BUYER` varchar(255) DEFAULT '' COMMENT '收货单位',
+  `GOODS_NM` varchar(255) DEFAULT '' COMMENT '货名',
+  `SPECIFICATION` varchar(255) NOT NULL DEFAULT '' COMMENT '规格',
+  `UNIT` varchar(125) DEFAULT NULL COMMENT '单位',
+  `QUANLITY` decimal(12,4) NOT NULL DEFAULT '0.0000' COMMENT '数量',
+  `PRICE` decimal(18,4) NOT NULL DEFAULT '0.0000' COMMENT '单价',
+  `AMOUNT` decimal(18,4) NOT NULL DEFAULT '0.0000' COMMENT '金额',
+  `PAYMENT` varchar(10) NOT NULL DEFAULT 'N' COMMENT '是否付款',
+  `memo` varchar(255) DEFAULT NULL,
+  `TRAN_DT` varchar(8) DEFAULT '' COMMENT '交易日期',
+  `ORDER_NO` varchar(36) DEFAULT '' COMMENT '清单编号',
+  `THICKNESS` varchar(10) DEFAULT '' COMMENT '厚度'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
+
+
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : loaclhost_ljj
+Source Server Version : 50703
+Source Host           : localhost:3306
+Source Database       : db2019
+
+Target Server Type    : MYSQL
+Target Server Version : 50703
+File Encoding         : 65001
+
+Date: 2020-11-01 17:20:42
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `huayi_goods`
+-- ----------------------------
+DROP TABLE IF EXISTS `huayi_goods`;
+CREATE TABLE `huayi_goods` (
+  `SPECIFICATION` varchar(255) DEFAULT '' COMMENT '规格',
+  `THICKNESS` varchar(10) DEFAULT '' COMMENT '厚度',
+  `quanlity` decimal(10,0) DEFAULT '0' COMMENT '支数',
+  `cost_price` decimal(10,4) DEFAULT '0.0000' COMMENT '成本价',
+  `weight_per` decimal(10,4) DEFAULT '0.0000' COMMENT '重量(kg)',
+  `tran_dt` varchar(8) DEFAULT NULL,
+  `count` decimal(10,0) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of huayi_goods
+
