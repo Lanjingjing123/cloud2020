@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 
 @Configuration
 public class MybatisConfig {
-    @Value("${mybatis.config-location}")
+    @Value("${mybatis.mapper-locations}")
     private String mapperLocationPattern;
 
     @Bean

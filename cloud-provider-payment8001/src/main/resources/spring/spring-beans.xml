@@ -16,6 +16,7 @@
                 <entry key="40105" value="t40105"></entry>
 
                 <entry key="40801" value="t40801"></entry>
+                <entry key="50001" value="t50001"></entry><!--登录测试接口-->
             </map>
         </property>
     </bean>
