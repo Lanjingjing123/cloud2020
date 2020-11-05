@@ -66,5 +66,10 @@
         <table schema="" tableName="tbl_prod_name_para" domainObjectName="TblProdNamePara"></table>
         <table schema="" tableName="tbl_trans_log" domainObjectName="TblTransLog"></table>
         <table schema="" tableName="tbl_prod_inventory" domainObjectName="TblProdInventory"></table>
+
+        <!-- 新增3张表-->
+        <table schema="" tableName="huayi_goods" domainObjectName="TblHuayiGoods"></table>
+        <table schema="" tableName="buy_trans" domainObjectName="TblBuyTrans"></table>
+        <table schema="" tableName="sale_trans" domainObjectName="TblSaleTrans"></table>
     </context>
 </generatorConfiguration>
