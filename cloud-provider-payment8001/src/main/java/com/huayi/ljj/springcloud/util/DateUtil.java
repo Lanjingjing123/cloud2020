@@ -1,6 +1,7 @@
 package com.huayi.ljj.springcloud.util;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 public class DateUtil {
@@ -21,6 +22,16 @@ public class DateUtil {
         return  date;
     }
 
+
+    public static String getLastDate8(){
+        //获取前一天的日期
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, -1);
+        Date time = calendar.getTime();
+        String lastDate = df.format(time);
+        return lastDate;
+    }
     public static void main(String[] args) {
         String date8 = getDate8();
         System.out.println(date8);
@@ -29,5 +40,9 @@ public class DateUtil {
         System.out.println(time6);
         String time14 = getDate14();
         System.out.println(time14);
+        String lastDate8 = getLastDate8();
+        System.out.println("lastDate:"+lastDate8);
+
+
     }
 }
