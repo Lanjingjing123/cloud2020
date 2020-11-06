@@ -53,6 +53,11 @@ public class T40000Service extends BaseService {
         LOG.info("请求参数req:[{}]",req40000);
         String currentDate = DateUtil.getDate8();
         String lastDate = DateUtil.getLastDate8();
+
+//        currentDate = "20201106";
+//        lastDate = "20201105";
+
+
         LOG.info("currentDate:"+currentDate+"lastDate:"+lastDate);
 
         TblHuayiGoods tblHuayiGoods2 = null;
@@ -63,10 +68,11 @@ public class T40000Service extends BaseService {
         List<TblHuayiGoods> tblHuayiGoodsList = tblHuayiGoodsMapper.selectByExample(example);
 
         for (TblHuayiGoods tblHuayiGoods: tblHuayiGoodsList) {
-            if (StringUtil.isEmpty(tblHuayiGoods.getSpecification())
-                    || StringUtil.isEmpty(tblHuayiGoods.getThickness())){
+            if (StringUtil.isEmpty(tblHuayiGoods.getSpecification())){
+                //  型号为空，直接跳骨
                 continue;
             }
+
             tblHuayiGoods2 = new TblHuayiGoods();
 
             // 型号
@@ -79,8 +85,17 @@ public class T40000Service extends BaseService {
                 quanlity = BigDecimal.ZERO;
             }
 
-            LOG.info("specification:"+specification+",thickness:"+thickness+",");
+
+            LOG.info("处理前，specification:"+specification+",thickness:"+thickness+","+"qyanlity:"+quanlity);
             BeanUtils.copyProperties(tblHuayiGoods,tblHuayiGoods2);
+            if (StringUtil.isEmpty(tblHuayiGoods.getThickness())){
+                // 厚度为空，更新日期,直接跳过统计
+                tblHuayiGoods2.setTranDt(currentDate);
+                tblHuayiGoodsMapper.insertSelective(tblHuayiGoods2);
+
+                continue;
+            }
+
             /** 查询当天入库记录与出库记录*/
 
             // 入库记录，加库存
@@ -115,14 +130,14 @@ public class T40000Service extends BaseService {
 
             }
             LOG.info("出库记录结束...");
+            LOG.info("处理后-+- ，specification:"+specification+",thickness:"+thickness+","+"qyanlity:"+quanlity);
             // 更新库存
             tblHuayiGoods2.setQuanlity(quanlity);
             // 每天新增一条记录入库
             tblHuayiGoods2.setTranDt(currentDate);
             tblHuayiGoodsMapper.insertSelective(tblHuayiGoods2);
 
-            LOG.info("T40000 End<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
         }
-
+            LOG.info("T40000 End<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
     }
 }

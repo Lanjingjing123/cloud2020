@@ -33,6 +33,14 @@ public class Req40000 extends BaseReq {
 
     private String extfld2;
 
+    /**
+     * 当前交易日期
+     */
+    private String currentDate;
+    /**
+     * 前一天日期
+     */
+    private String lastDate;
 
 
 }
