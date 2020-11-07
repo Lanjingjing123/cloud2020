@@ -40,6 +40,11 @@ public class TblHuayiGoods implements Serializable {
     private BigDecimal count;
 
     /**
+     * 种类
+     */
+    private String kinds;
+
+    /**
      * huayi_goods
      */
     private static final long serialVersionUID = 1L;
@@ -156,6 +161,22 @@ public class TblHuayiGoods implements Serializable {
         this.count = count;
     }
 
+    /**
+     * 种类
+     * @return kinds 种类
+     */
+    public String getKinds() {
+        return kinds;
+    }
+
+    /**
+     * 种类
+     * @param kinds 种类
+     */
+    public void setKinds(String kinds) {
+        this.kinds = kinds == null ? null : kinds.trim();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -169,6 +190,7 @@ public class TblHuayiGoods implements Serializable {
         sb.append(", weightPer=").append(weightPer);
         sb.append(", tranDt=").append(tranDt);
         sb.append(", count=").append(count);
+        sb.append(", kinds=").append(kinds);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

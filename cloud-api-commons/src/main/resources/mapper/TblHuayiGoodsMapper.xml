@@ -9,6 +9,7 @@
     <result column="weight_per" jdbcType="DECIMAL" property="weightPer" />
     <result column="tran_dt" jdbcType="VARCHAR" property="tranDt" />
     <result column="count" jdbcType="DECIMAL" property="count" />
+    <result column="kinds" jdbcType="VARCHAR" property="kinds" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    SPECIFICATION, THICKNESS, quanlity, cost_price, weight_per, tran_dt, count
+    SPECIFICATION, THICKNESS, quanlity, cost_price, weight_per, tran_dt, count, kinds
   </sql>
   <select id="selectByExample" parameterType="com.huayi.ljj.springcloud.model.TblHuayiGoodsExample" resultMap="BaseResultMap">
     select
@@ -94,10 +95,10 @@
   <insert id="insert" parameterType="com.huayi.ljj.springcloud.model.TblHuayiGoods">
     insert into huayi_goods (SPECIFICATION, THICKNESS, quanlity, 
       cost_price, weight_per, tran_dt, 
-      count)
+      count, kinds)
     values (#{specification,jdbcType=VARCHAR}, #{thickness,jdbcType=VARCHAR}, #{quanlity,jdbcType=DECIMAL}, 
       #{costPrice,jdbcType=DECIMAL}, #{weightPer,jdbcType=DECIMAL}, #{tranDt,jdbcType=VARCHAR}, 
-      #{count,jdbcType=DECIMAL})
+      #{count,jdbcType=DECIMAL}, #{kinds,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.huayi.ljj.springcloud.model.TblHuayiGoods">
     insert into huayi_goods
@@ -123,6 +124,9 @@
       <if test="count != null">
         count,
       </if>
+      <if test="kinds != null">
+        kinds,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="specification != null">
@@ -145,6 +149,9 @@
       </if>
       <if test="count != null">
         #{count,jdbcType=DECIMAL},
+      </if>
+      <if test="kinds != null">
+        #{kinds,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -178,6 +185,9 @@
       <if test="record.count != null">
         count = #{record.count,jdbcType=DECIMAL},
       </if>
+      <if test="record.kinds != null">
+        kinds = #{record.kinds,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -191,7 +201,8 @@
       cost_price = #{record.costPrice,jdbcType=DECIMAL},
       weight_per = #{record.weightPer,jdbcType=DECIMAL},
       tran_dt = #{record.tranDt,jdbcType=VARCHAR},
-      count = #{record.count,jdbcType=DECIMAL}
+      count = #{record.count,jdbcType=DECIMAL},
+      kinds = #{record.kinds,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

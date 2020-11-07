@@ -566,6 +566,76 @@ public class TblHuayiGoodsExample {
             addCriterion("count not between", value1, value2, "count");
             return (Criteria) this;
         }
+
+        public Criteria andKindsIsNull() {
+            addCriterion("kinds is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andKindsIsNotNull() {
+            addCriterion("kinds is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andKindsEqualTo(String value) {
+            addCriterion("kinds =", value, "kinds");
+            return (Criteria) this;
+        }
+
+        public Criteria andKindsNotEqualTo(String value) {
+            addCriterion("kinds <>", value, "kinds");
+            return (Criteria) this;
+        }
+
+        public Criteria andKindsGreaterThan(String value) {
+            addCriterion("kinds >", value, "kinds");
+            return (Criteria) this;
+        }
+
+        public Criteria andKindsGreaterThanOrEqualTo(String value) {
+            addCriterion("kinds >=", value, "kinds");
+            return (Criteria) this;
+        }
+
+        public Criteria andKindsLessThan(String value) {
+            addCriterion("kinds <", value, "kinds");
+            return (Criteria) this;
+        }
+
+        public Criteria andKindsLessThanOrEqualTo(String value) {
+            addCriterion("kinds <=", value, "kinds");
+            return (Criteria) this;
+        }
+
+        public Criteria andKindsLike(String value) {
+            addCriterion("kinds like", value, "kinds");
+            return (Criteria) this;
+        }
+
+        public Criteria andKindsNotLike(String value) {
+            addCriterion("kinds not like", value, "kinds");
+            return (Criteria) this;
+        }
+
+        public Criteria andKindsIn(List<String> values) {
+            addCriterion("kinds in", values, "kinds");
+            return (Criteria) this;
+        }
+
+        public Criteria andKindsNotIn(List<String> values) {
+            addCriterion("kinds not in", values, "kinds");
+            return (Criteria) this;
+        }
+
+        public Criteria andKindsBetween(String value1, String value2) {
+            addCriterion("kinds between", value1, value2, "kinds");
+            return (Criteria) this;
+        }
+
+        public Criteria andKindsNotBetween(String value1, String value2) {
+            addCriterion("kinds not between", value1, value2, "kinds");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
