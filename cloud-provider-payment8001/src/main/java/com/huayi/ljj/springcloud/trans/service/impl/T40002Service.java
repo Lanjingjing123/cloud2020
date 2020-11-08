@@ -79,18 +79,34 @@ public class T40002Service extends BaseService {
             j++;
             TblHuayiGoodsExample example = new TblHuayiGoodsExample();
             example.createCriteria().andTranDtEqualTo(tranDate).andKindsEqualTo(productNm);
+//            example.setOrderByClause("SPECIFICATION");
             List<TblHuayiGoods> tblHuayiGoodsList = tblHuayiGoodsMapper.selectByExample(example);
 
             List<HuayiModelProperty> tableHeaderExcel = new ArrayList<HuayiModelProperty>();
 
-
+            List<String> list = new ArrayList<>();
+            HuayiModelProperty tableModelProperty =null;
+            int i =0;
             // 每个sheet的数据进行绑定
             for (TblHuayiGoods tblHuayiGoods :tblHuayiGoodsList) {
                 if (StringUtil.isEmpty(tblHuayiGoods.getSpecification())){
                     continue;
                 }
-                HuayiModelProperty tableModelProperty = new HuayiModelProperty();
+                i++;
 
+
+                // 非首行且下一型号与上一型号不同，便先增加一个空行
+                if (!list.contains(tblHuayiGoods.getSpecification())){
+                    list.add(tblHuayiGoods.getSpecification());
+                    if (i!=1){
+                        tableModelProperty = new HuayiModelProperty();
+                        tableModelProperty.setSpecification("");
+                        tableHeaderExcel.add(tableModelProperty);
+                    }
+
+                }
+
+                tableModelProperty = new HuayiModelProperty();
                 tableModelProperty.setSpecification(tblHuayiGoods.getSpecification());
                 tableModelProperty.setThickness(tblHuayiGoods.getThickness());
                 tableModelProperty.setQuanlity(tblHuayiGoods.getQuanlity());
