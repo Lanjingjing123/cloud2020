@@ -51,8 +51,13 @@ public class T40002Service extends BaseService {
         productNmlist.add("BG");
         LOG.info("请求报文:[{}]",req40002);
 
+        String tranDate = DateUtil.getDate8();
+        if (StringUtil.isNotEmpty(req40002.getExportDate())){
+            tranDate = req40002.getExportDate();
+        }
+
         String filePath = req40002.getExportPath();
-        String fileName = "华亿库存.xlsx";
+        String fileName = "华亿库存"+tranDate+".xlsx";
         String fileFullPath = null;
         if (filePath.endsWith("/")){
             fileFullPath = filePath+fileName;
@@ -62,10 +67,7 @@ public class T40002Service extends BaseService {
 
         LOG.info("fileFullPath="+fileFullPath);
 
-        String tranDate = DateUtil.getDate8();
-        if (StringUtil.isNotEmpty(req40002.getExportDate())){
-            tranDate = req40002.getExportDate();
-        }
+
 
 
         LOG.info("export begin >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
