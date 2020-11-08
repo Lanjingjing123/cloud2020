@@ -20,7 +20,9 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
@@ -52,7 +54,7 @@ public class T40002Service extends BaseService {
         LOG.info("请求报文:[{}]",req40002);
 
         String filePath = req40002.getExportPath();
-        String fileName = "华亿库存.xlsx";
+        String fileName = "华亿库存"+"_"+DateUtil.getDate8()+".xlsx";
         String fileFullPath = null;
         if (filePath.endsWith("/")){
             fileFullPath = filePath+fileName;
@@ -76,18 +78,36 @@ public class T40002Service extends BaseService {
         for (String productNm: productNmlist) { // 分类查询，每一个类型一个sheet
             j++;
             TblHuayiGoodsExample example = new TblHuayiGoodsExample();
+            // 按照型号进行排序
+            example.setOrderByClause("SPECIFICATION");
             example.createCriteria().andTranDtEqualTo(tranDate).andKindsEqualTo(productNm);
             List<TblHuayiGoods> tblHuayiGoodsList = tblHuayiGoodsMapper.selectByExample(example);
 
             List<HuayiModelProperty> tableHeaderExcel = new ArrayList<HuayiModelProperty>();
-
-
+            // 单个sheet的行数
+            int cols = 0;
+            List<String> list = new ArrayList<>();
             // 每个sheet的数据进行绑定
             for (TblHuayiGoods tblHuayiGoods :tblHuayiGoodsList) {
-                if (StringUtil.isEmpty(tblHuayiGoods.getSpecification())){
+                // 型号
+                String specification = tblHuayiGoods.getSpecification();
+
+                if (StringUtil.isEmpty(specification)){
                     continue;
                 }
+                cols++;
                 HuayiModelProperty tableModelProperty = new HuayiModelProperty();
+
+                // 厚度
+                String thickness = tblHuayiGoods.getThickness();
+
+                // 首行不需要增加一个空行，规格不包含,增加一个空行
+                if (cols!=1 && !list.contains(specification)){
+                    list.add(specification);
+                    tableModelProperty.setSpecification("");
+                    tableModelProperty.setThickness("");
+                    tableHeaderExcel.add(tableModelProperty);
+                }
 
                 tableModelProperty.setSpecification(tblHuayiGoods.getSpecification());
                 tableModelProperty.setThickness(tblHuayiGoods.getThickness());
