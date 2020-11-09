@@ -39,8 +39,10 @@ public class Test {
      */
     @org.junit.Test
     public void readLessThan1000RowBySheet(){
-        String filePath = "E:/home/excel/测试.xlsx";
-        Sheet sheet = new Sheet(1, 1);
+        String filePath = "C:/Users/ljj/Documents/WPS Cloud Files/895391883/团队文档/华亿钢铁/出货记录11月.xlsx";
+        // 从第三个sheet，第二行开始-index=1:第二行
+        Sheet sheet = new Sheet(1, 2);
+        sheet.setSheetName("方管");
         List<Object> objects = ExcelUtil.readLessThan1000RowBySheet(filePath,sheet);
         objects.forEach(System.out::println);
     }
