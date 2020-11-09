@@ -20,9 +20,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by IntelliJ IDEA.
@@ -53,8 +51,13 @@ public class T40002Service extends BaseService {
         productNmlist.add("BG");
         LOG.info("请求报文:[{}]",req40002);
 
+        String tranDate = DateUtil.getDate8();
+        if (StringUtil.isNotEmpty(req40002.getExportDate())){
+            tranDate = req40002.getExportDate();
+        }
+
         String filePath = req40002.getExportPath();
-        String fileName = "华亿库存"+"_"+DateUtil.getDate8()+".xlsx";
+        String fileName = "华亿库存"+tranDate+".xlsx";
         String fileFullPath = null;
         if (filePath.endsWith("/")){
             fileFullPath = filePath+fileName;
@@ -64,10 +67,7 @@ public class T40002Service extends BaseService {
 
         LOG.info("fileFullPath="+fileFullPath);
 
-        String tranDate = DateUtil.getDate8();
-        if (StringUtil.isNotEmpty(req40002.getExportDate())){
-            tranDate = req40002.getExportDate();
-        }
+
 
 
         LOG.info("export begin >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
@@ -78,37 +78,35 @@ public class T40002Service extends BaseService {
         for (String productNm: productNmlist) { // 分类查询，每一个类型一个sheet
             j++;
             TblHuayiGoodsExample example = new TblHuayiGoodsExample();
-            // 按照型号进行排序
-            example.setOrderByClause("SPECIFICATION");
             example.createCriteria().andTranDtEqualTo(tranDate).andKindsEqualTo(productNm);
+//            example.setOrderByClause("SPECIFICATION");
             List<TblHuayiGoods> tblHuayiGoodsList = tblHuayiGoodsMapper.selectByExample(example);
 
             List<HuayiModelProperty> tableHeaderExcel = new ArrayList<HuayiModelProperty>();
-            // 单个sheet的行数
-            int cols = 0;
+
             List<String> list = new ArrayList<>();
+            HuayiModelProperty tableModelProperty =null;
+            int i =0;
             // 每个sheet的数据进行绑定
             for (TblHuayiGoods tblHuayiGoods :tblHuayiGoodsList) {
-                // 型号
-                String specification = tblHuayiGoods.getSpecification();
-
-                if (StringUtil.isEmpty(specification)){
+                if (StringUtil.isEmpty(tblHuayiGoods.getSpecification())){
                     continue;
                 }
-                cols++;
-                HuayiModelProperty tableModelProperty = new HuayiModelProperty();
+                i++;
 
-                // 厚度
-                String thickness = tblHuayiGoods.getThickness();
 
-                // 首行不需要增加一个空行，规格不包含,增加一个空行
-                if (cols!=1 && !list.contains(specification)){
-                    list.add(specification);
-                    tableModelProperty.setSpecification("");
-                    tableModelProperty.setThickness("");
-                    tableHeaderExcel.add(tableModelProperty);
+                // 非首行且下一型号与上一型号不同，便先增加一个空行
+                if (!list.contains(tblHuayiGoods.getSpecification())){
+                    list.add(tblHuayiGoods.getSpecification());
+                    if (i!=1){
+                        tableModelProperty = new HuayiModelProperty();
+                        tableModelProperty.setSpecification("");
+                        tableHeaderExcel.add(tableModelProperty);
+                    }
+
                 }
 
+                tableModelProperty = new HuayiModelProperty();
                 tableModelProperty.setSpecification(tblHuayiGoods.getSpecification());
                 tableModelProperty.setThickness(tblHuayiGoods.getThickness());
                 tableModelProperty.setQuanlity(tblHuayiGoods.getQuanlity());
