@@ -51,11 +51,17 @@ public class T40000Service extends BaseService {
 
         Req40000 req40000 = (Req40000)context.getBaseReq();
         LOG.info("请求参数req:[{}]",req40000);
+        // 默认是当天日期
         String currentDate = DateUtil.getDate8();
         String lastDate = DateUtil.getLastDate8();
 
 //        currentDate = "20201106";
 //        lastDate = "20201105";
+        if (req40000.getCurrentDate()!=null && req40000.getLastDate()!=null){
+            currentDate = req40000.getCurrentDate();
+            lastDate = req40000.getLastDate();
+        }
+
 
 
         LOG.info("currentDate:"+currentDate+"lastDate:"+lastDate);
@@ -95,6 +101,11 @@ public class T40000Service extends BaseService {
 
                 continue;
             }
+            // 重量统一更新成3位,价格为2位
+            tblHuayiGoods2.setWeightPer(tblHuayiGoods.getWeightPer().setScale(3,BigDecimal.ROUND_UP));
+            tblHuayiGoods2.setCostPrice(tblHuayiGoods.getCostPrice().setScale(2,BigDecimal.ROUND_UP));
+
+
 
             /** 查询当天入库记录与出库记录*/
 
@@ -108,10 +119,17 @@ public class T40000Service extends BaseService {
                 quanlity  = quanlity.add(addQuanlity);
                 // 成本价
                 BigDecimal costPrice = tblBuyTrans.getCostPrice();
-                // 最新的成本价 > 以前的成本价，直接更新最新的成本价
+                // 单支重量
+                BigDecimal weightPer = tblBuyTrans.getWeightPer();
+                // 更新为最高的成本价
                 if (costPrice.compareTo(tblHuayiGoods.getCostPrice())>0){
-                    tblHuayiGoods2.setCostPrice(costPrice);
+                    tblHuayiGoods2.setCostPrice(costPrice.setScale(2,BigDecimal.ROUND_UP));
                 }
+                // 更新历史最重的重量
+                if(weightPer.compareTo(tblHuayiGoods.getWeightPer())>0){
+                    tblHuayiGoods2.setWeightPer(weightPer.setScale(3,BigDecimal.ROUND_UP));
+                }
+
             }
             LOG.info("入库记录结束...");
             // 出库记录，减库存
