@@ -4,6 +4,7 @@ import com.alibaba.excel.metadata.Sheet;
 import com.huayi.ljj.springcloud.dao.TblBuyTransMapper;
 import com.huayi.ljj.springcloud.dao.TblSaleTransMapper;
 import com.huayi.ljj.springcloud.exception.BaseException;
+import com.huayi.ljj.springcloud.model.TblBuyTrans;
 import com.huayi.ljj.springcloud.pojo.req.BaseReq;
 import com.huayi.ljj.springcloud.service.IServiceContext;
 import com.huayi.ljj.springcloud.service.base.BaseService;
@@ -47,15 +48,39 @@ public class T40004Service extends BaseService {
         // 文件全路径
         String fileFullPath = req40004.getFileFullPath();
         // 读文件
-        // 从第三个sheet，第二行开始-index=1:第二行
-        Sheet sheet = new Sheet(Integer.parseInt(req40004.getSheetNo()), Integer.parseInt(req40004.getHeadLineMun()));
+        // sheetNo 默认1,,headLineMun 默认0
+        Integer sheetNo = 1;
+        Integer headLineMun = 2;
+        if (req40004.getSheetNo() != null){
+            sheetNo = Integer.parseInt(req40004.getSheetNo()) ;
+        }
+        if (req40004.getHeadLineMun() !=null){
+            headLineMun = Integer.parseInt(req40004.getHeadLineMun());
+        }
+
+
+        Sheet sheet = new Sheet(sheetNo, Integer.parseInt(req40004.getHeadLineMun()));
         sheet.setSheetName(req40004.getImportDate());
         List<Object> objects = ExcelUtil.readLessThan1000RowBySheet(fileFullPath,sheet);
-        objects.forEach(System.out::println);
+//        objects.forEach(System.out::println);
 
         //入库
         if (req40004.getType().equals("in")){
             LOG.info("录入进货表");
+
+            TblBuyTrans tblBuyTrans = new TblBuyTrans();
+            for (Object item : objects) {
+                String arrStr =  item.toString();
+                arrStr = arrStr.replace("[", "");
+                arrStr =  arrStr.replace("]","");
+                System.out.println(arrStr);
+
+
+
+            }
+
+
+//            tblBuyTransMapper.insertSelective(tblBuyTrans);
 
         }else if(req40004.getType().equals("out")){// 出库
             LOG.info("录入出库表");
