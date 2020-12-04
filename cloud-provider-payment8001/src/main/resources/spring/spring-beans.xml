@@ -18,8 +18,9 @@
                 <entry key="40801" value="t40801"></entry>
                 <entry key="50001" value="t50001"></entry><!--登录测试接口-->
                 <entry key="40000" value="t40000"></entry><!-- 减库存并计算最新-->
-                <entry key="40002" value="t40002"></entry><!-- 减库存并计算最新-->
-                <entry key="40004" value="t40004"></entry><!-- 减库存并计算最新-->
+                <entry key="40002" value="t40002"></entry><!-- -->
+                <entry key="40004" value="t40004"></entry><!-- -->
+                <entry key="80010" value="t80010"></entry><!-- 减库存并计算最新-->
             </map>
         </property>
     </bean>
