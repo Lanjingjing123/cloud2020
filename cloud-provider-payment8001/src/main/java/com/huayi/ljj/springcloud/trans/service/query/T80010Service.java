@@ -19,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
@@ -30,9 +31,13 @@ import java.util.Map;
  */
 @Service("t80010")
 public class T80010Service extends BaseQueryService {
-    private TblSaleTransMapper tblSaleTransMapper;
-    private TblHuayiGoodsMapper tblHuayiGoodsMapper;
     private static final Logger LOG = LoggerFactory.getLogger(T80010Service.class);
+
+    @Resource
+    private TblSaleTransMapper tblSaleTransMapper;
+    @Resource
+    private TblHuayiGoodsMapper tblHuayiGoodsMapper;
+
     @Override
     public void action(IServiceContext context) throws Exception {
         Req80010 req = (Req80010)context.getBaseReq();
@@ -52,12 +57,12 @@ public class T80010Service extends BaseQueryService {
         }
         String currentDt = req.getBeginDt();
         // 当日利润
-        BigDecimal totalProfit = BigDecimal.ZERO;
+
         Map<String,BigDecimal> map = new HashMap<>();
 
         do {
 
-
+            BigDecimal totalProfit = BigDecimal.ZERO;
              // 按照日期统计每天的收益
             TblSaleTransExample example = new TblSaleTransExample();
             example.createCriteria().andTranDtEqualTo(currentDt);
@@ -74,6 +79,9 @@ public class T80010Service extends BaseQueryService {
                 example1.createCriteria().andTranDtEqualTo(currentDt).andSpecificationEqualTo(tblsaleTran.getSpecification())
                         .andThicknessEqualTo(tblsaleTran.getThickness());
                 List<TblHuayiGoods> tblHuayiGoodsList = tblHuayiGoodsMapper.selectByExample(example1);
+                if (tblHuayiGoodsList == null || tblHuayiGoodsList.size()==0){
+                    continue;
+                }
                 // 交易日期  -型号 -厚度 唯一确定
                 TblHuayiGoods tblHuayiGoods = tblHuayiGoodsList.get(0);
                 // 成本单价
@@ -81,11 +89,19 @@ public class T80010Service extends BaseQueryService {
                 // 销售单价
                 BigDecimal price = tblsaleTran.getPrice();
                 BigDecimal profit = price.subtract(costPrice).multiply(tblsaleTran.getQuanlity());
-                totalProfit = totalProfit.add(profit);
+                totalProfit = totalProfit.add(profit).setScale(2,BigDecimal.ROUND_HALF_UP);
 
             }
             map.put(currentDt,totalProfit);
-        }while (currentDt.equals(req.getEndDt()));
+
+            // 日期相同直接结束
+            if (currentDt.equals(req.getEndDt())){
+                break;
+            }
+            // 查询下一天
+            currentDt = DateUtil.getSpecifiedDayAfter(currentDt);
+
+        }while (true);
         resp80010.setMap(map);
         resp80010.setRespCode(EnumRespMsg.SUCCESS.getCode());
         resp80010.setRespMsg(EnumRespMsg.SUCCESS.getMsg());
