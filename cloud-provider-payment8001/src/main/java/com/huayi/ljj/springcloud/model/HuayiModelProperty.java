@@ -40,10 +40,15 @@ public class HuayiModelProperty extends BaseRowModel {
     @ExcelProperty(value = "重量(kg)", index = 4)
     private BigDecimal weightPer;
 
-    @ExcelProperty(value = "种类", index = 5)
+    @ExcelProperty(value = "吨位价", index = 5)
+    private BigDecimal tonPrice;
+
+    @ExcelProperty(value = "种类", index = 6)
     private String kinds;
 
-    @ExcelProperty(value = "交易日期", index = 6)
+    @ExcelProperty(value = "交易日期", index = 7)
     private String tranDt;
+
+
 
 }
