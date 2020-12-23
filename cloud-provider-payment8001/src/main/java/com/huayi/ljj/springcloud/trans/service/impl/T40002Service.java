@@ -58,6 +58,8 @@ public class T40002Service extends BaseService {
             tranDate = req40002.getExportDate();
         }
 
+
+
         String filePath = req40002.getExportPath();
         String fileName = "华亿库存"+tranDate+".xlsx";
         String fileFullPath = null;
@@ -99,12 +101,12 @@ public class T40002Service extends BaseService {
 
                 // 非首行且下一型号与上一型号不同，便先增加一个空行
                 if (!list.contains(tblHuayiGoods.getSpecification())){
-                    list.add(tblHuayiGoods.getSpecification());
-                    if (i!=1){
-                        tableModelProperty = new HuayiModelProperty();
-                        tableModelProperty.setSpecification("");
-                        tableHeaderExcel.add(tableModelProperty);
-                    }
+                        list.add(tblHuayiGoods.getSpecification());
+                        if (i!=1){
+                            tableModelProperty = new HuayiModelProperty();
+                            tableModelProperty.setSpecification("");
+                            tableHeaderExcel.add(tableModelProperty);
+                        }
 
                 }
 
@@ -113,6 +115,12 @@ public class T40002Service extends BaseService {
                 tableModelProperty.setThickness(tblHuayiGoods.getThickness());
                 tableModelProperty.setQuanlity(tblHuayiGoods.getQuanlity());
                 tableModelProperty.setCostPrice(tblHuayiGoods.getCostPrice());
+                // 吨位价
+                if (tblHuayiGoods.getCostPrice()!=null && tblHuayiGoods.getCostPrice().compareTo(BigDecimal.ZERO)>0
+                    && tblHuayiGoods.getWeightPer()!=null && tblHuayiGoods.getWeightPer().compareTo(BigDecimal.ZERO)>0){
+
+                  tableModelProperty.setTonPrice(tblHuayiGoods.getCostPrice().divide(tblHuayiGoods.getWeightPer(),2,BigDecimal.ROUND_UP).multiply(new BigDecimal("1000")).setScale(2,BigDecimal.ROUND_UP));
+                }
                 tableModelProperty.setWeightPer(tblHuayiGoods.getWeightPer());
                 tableModelProperty.setKinds(tblHuayiGoods.getKinds());
                 tableModelProperty.setTranDt(tblHuayiGoods.getTranDt());
@@ -159,8 +167,8 @@ public class T40002Service extends BaseService {
         Sheet sheet = new Sheet(j,0);
         sheet.setSheetName("热镀锌圆管");
         for (String specification : kinds) {
-            // 默认4800 一吨
-            BigDecimal priceTonPrice = new BigDecimal("4.8");
+            //
+            BigDecimal priceTonPrice = new BigDecimal(req40002.getRYGPrice());
             // 截取直径
             int d = Integer.parseInt(specification.replace("φ",""));
             for (int m=0;m<12;m++){  // 每种型号 12个厚度，先统一设置单价4800/吨
@@ -173,7 +181,7 @@ public class T40002Service extends BaseService {
                 tableModelProperty.setThickness(thickness+"");
                 tableModelProperty.setKinds("RYG");
                 tableModelProperty.setTranDt(tranDate);
-                tableModelProperty.setTonPrice(new BigDecimal(4800.00).setScale(2,BigDecimal.ROUND_UP));
+                tableModelProperty.setTonPrice(priceTonPrice.multiply(new BigDecimal("1000")).setScale(2,BigDecimal.ROUND_UP));
                 tableModelProperty.setWeightPer(weightPer);
                 tableModelProperty.setCostPrice(weightPer.multiply(priceTonPrice).setScale(2,BigDecimal.ROUND_UP));
                 tableModelProperty.setQuanlity(BigDecimal.ZERO);
@@ -225,7 +233,7 @@ public class T40002Service extends BaseService {
         sheet_FG.setSheetName("热镀锌方管");
         for (String specification : kinds_FG) {
             // 默认5000 一吨
-            BigDecimal priceTonPrice = new BigDecimal("5.0");
+            BigDecimal priceTonPrice = new BigDecimal(req40002.getRFGPrice());
             // 截取长,宽
             int weigth = Integer.parseInt(specification.split("\\*")[0]);
             int legth = Integer.parseInt(specification.split("\\*")[1]);
@@ -240,7 +248,7 @@ public class T40002Service extends BaseService {
                 tableModelProperty.setThickness(thickness+"");
                 tableModelProperty.setKinds("RFG");
                 tableModelProperty.setTranDt(tranDate);
-                tableModelProperty.setTonPrice(new BigDecimal(5000.00).setScale(2,BigDecimal.ROUND_UP));
+                tableModelProperty.setTonPrice(priceTonPrice.multiply(new BigDecimal("1000")).setScale(2,BigDecimal.ROUND_UP));
                 tableModelProperty.setWeightPer(weightPer);
                 tableModelProperty.setCostPrice(weightPer.multiply(priceTonPrice).setScale(2,BigDecimal.ROUND_UP));
                 tableModelProperty.setQuanlity(BigDecimal.ZERO);
