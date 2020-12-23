@@ -113,6 +113,8 @@ public class T40000Service extends BaseService {
             TblBuyTransExample buyTransExample = new TblBuyTransExample();
             buyTransExample.createCriteria().andTranDtEqualTo(currentDate).andSpecificationEqualTo(specification).andThicknessEqualTo(thickness);
             List<TblBuyTrans> tblBuyTransList = tblBuyTransMapper.selectByExample(buyTransExample);
+
+
             for (TblBuyTrans tblBuyTrans : tblBuyTransList) {
                 // 数量
                 BigDecimal addQuanlity = tblBuyTrans.getQuanlity();

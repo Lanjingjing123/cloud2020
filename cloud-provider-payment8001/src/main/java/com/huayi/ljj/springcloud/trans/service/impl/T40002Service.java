@@ -1,6 +1,7 @@
 package com.huayi.ljj.springcloud.trans.service.impl;
 
 import com.alibaba.excel.metadata.Sheet;
+import com.alibaba.excel.metadata.TableStyle;
 import com.huayi.ljj.springcloud.dao.TblHuayiGoodsMapper;
 import com.huayi.ljj.springcloud.exception.BaseException;
 import com.huayi.ljj.springcloud.model.HuayiModelProperty;
@@ -19,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -135,6 +137,134 @@ public class T40002Service extends BaseService {
             multipleSheelPropety.setSheet(sheet);
             list1.add(multipleSheelPropety);
         }
+
+        // 增加一个拓展的热镀锌
+        j++;
+        List<String> kinds = new ArrayList<>();
+        kinds.add("φ19");
+        kinds.add("φ25");
+        kinds.add("φ32");
+        kinds.add("φ42");
+        kinds.add("φ48");
+        kinds.add("φ60");
+        kinds.add("φ76");
+        kinds.add("φ89");
+        kinds.add("φ114");
+        kinds.add("φ140");
+        kinds.add("φ165");
+        kinds.add("φ219");
+        ExcelUtil.MultipleSheelPropety multipleSheelPropety = new ExcelUtil.MultipleSheelPropety();
+        List<HuayiModelProperty> tableHeaderExcel = new ArrayList<HuayiModelProperty>();
+        // 初始化表名
+        Sheet sheet = new Sheet(j,0);
+        sheet.setSheetName("热镀锌圆管");
+        for (String specification : kinds) {
+            // 默认4800 一吨
+            BigDecimal priceTonPrice = new BigDecimal("4.8");
+            // 截取直径
+            int d = Integer.parseInt(specification.replace("φ",""));
+            for (int m=0;m<12;m++){  // 每种型号 12个厚度，先统一设置单价4800/吨
+
+                HuayiModelProperty tableModelProperty = new HuayiModelProperty();
+                tableModelProperty.setSpecification(specification);
+                double thickness = 2+0.25*m;
+                BigDecimal weightPer = new BigDecimal((d-thickness)*thickness*6*0.02466).setScale(3,BigDecimal.ROUND_UP);
+
+                tableModelProperty.setThickness(thickness+"");
+                tableModelProperty.setKinds("RYG");
+                tableModelProperty.setTranDt(tranDate);
+                tableModelProperty.setTonPrice(new BigDecimal(4800.00).setScale(2,BigDecimal.ROUND_UP));
+                tableModelProperty.setWeightPer(weightPer);
+                tableModelProperty.setCostPrice(weightPer.multiply(priceTonPrice).setScale(2,BigDecimal.ROUND_UP));
+                tableModelProperty.setQuanlity(BigDecimal.ZERO);
+                tableHeaderExcel.add(tableModelProperty);
+
+
+                if (m==11){ // 每种型号最后一个厚度之后需要增加一个空行
+                    tableModelProperty = new HuayiModelProperty();
+                    tableModelProperty.setSpecification("");
+                    tableHeaderExcel.add(tableModelProperty);
+                }
+
+
+            }
+
+
+        }
+        multipleSheelPropety.setData(tableHeaderExcel);
+        multipleSheelPropety.setSheet(sheet);
+
+        list1.add(multipleSheelPropety);
+
+
+        // 增加一个拓展的热镀锌方管
+        j++;
+        List<String> kinds_FG = new ArrayList<>();
+        kinds_FG.add("30*30");
+        kinds_FG.add("40*40");
+        kinds_FG.add("50*50");
+        kinds_FG.add("60*60");
+        kinds_FG.add("80*80");
+        kinds_FG.add("100*100");
+        kinds_FG.add("120*120");
+        kinds_FG.add("150*150");
+        kinds_FG.add("200*200");
+        kinds_FG.add("20*40");
+        kinds_FG.add("30*50");
+        kinds_FG.add("40*60");
+        kinds_FG.add("40*80");
+        kinds_FG.add("50*100");
+        kinds_FG.add("60*80");
+        kinds_FG.add("60*120");
+        kinds_FG.add("80*160");
+
+        ExcelUtil.MultipleSheelPropety multipleSheelPropety_FG = new ExcelUtil.MultipleSheelPropety();
+        List<HuayiModelProperty> tableHeaderExcel_FG = new ArrayList<HuayiModelProperty>();
+        // 初始化表名
+        Sheet sheet_FG = new Sheet(j,0);
+        sheet_FG.setSheetName("热镀锌方管");
+        for (String specification : kinds_FG) {
+            // 默认5000 一吨
+            BigDecimal priceTonPrice = new BigDecimal("5.0");
+            // 截取长,宽
+            int weigth = Integer.parseInt(specification.split("\\*")[0]);
+            int legth = Integer.parseInt(specification.split("\\*")[1]);
+
+            for (int m=0;m<11;m++){  // 每种型号 12个厚度，先统一设置单价5000/吨
+
+                HuayiModelProperty tableModelProperty = new HuayiModelProperty();
+                tableModelProperty.setSpecification(specification);
+                double thickness = 2.5+0.25*m;
+                BigDecimal weightPer = new BigDecimal((weigth+legth)*2*6*thickness*0.00785).setScale(3,BigDecimal.ROUND_UP);
+
+                tableModelProperty.setThickness(thickness+"");
+                tableModelProperty.setKinds("RFG");
+                tableModelProperty.setTranDt(tranDate);
+                tableModelProperty.setTonPrice(new BigDecimal(5000.00).setScale(2,BigDecimal.ROUND_UP));
+                tableModelProperty.setWeightPer(weightPer);
+                tableModelProperty.setCostPrice(weightPer.multiply(priceTonPrice).setScale(2,BigDecimal.ROUND_UP));
+                tableModelProperty.setQuanlity(BigDecimal.ZERO);
+                tableHeaderExcel_FG.add(tableModelProperty);
+
+
+                if (m==10){ // 每种型号最后一个厚度之后需要增加一个空行
+                    tableModelProperty = new HuayiModelProperty();
+                    tableModelProperty.setSpecification("");
+                    tableHeaderExcel_FG.add(tableModelProperty);
+                }
+
+
+            }
+
+
+        }
+        multipleSheelPropety_FG.setData(tableHeaderExcel_FG);
+        multipleSheelPropety_FG.setSheet(sheet_FG);
+
+        list1.add(multipleSheelPropety_FG);
+
+
+
         ExcelUtil.writeWithMultipleSheel(fileFullPath,list1);
 
         LOG.info("export end <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
