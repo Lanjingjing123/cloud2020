@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 /**
  * Created by IntelliJ IDEA.
  *
@@ -35,5 +37,15 @@ public class Req40002  extends BaseReq {
      * 导出路径
      */
     private String exportPath;
+
+    /**
+     * 热方管吨位价
+     */
+    private String RFGPrice;
+    /**
+     * 热圆管吨位价
+     */
+    private String RYGPrice;
+
 
 }
