@@ -272,6 +272,60 @@ public class T40002Service extends BaseService {
         list1.add(multipleSheelPropety_FG);
 
 
+        // 增加一个拓展的热镀锌角钢
+        j++;
+        List<String> kinds_JG = new ArrayList<>();
+        kinds_JG.add("30");
+        kinds_JG.add("40");
+        kinds_JG.add("50");
+        kinds_JG.add("60");
+
+
+
+        ExcelUtil.MultipleSheelPropety multipleSheelPropety_JG = new ExcelUtil.MultipleSheelPropety();
+        List<HuayiModelProperty> tableHeaderExcel_JG = new ArrayList<HuayiModelProperty>();
+        // 初始化表名
+        Sheet sheet_JG = new Sheet(j,0);
+        sheet_JG.setSheetName("热镀锌角钢");
+        for (String specification : kinds_JG) {
+            // 默认5000 一吨
+            BigDecimal priceTonPrice = new BigDecimal("4.6");
+            // 截取宽
+            int weigth = Integer.parseInt(specification);
+
+            for (int m=0;m<11;m++){  // 每种型号 12个厚度，先统一设置单价5000/吨
+
+                HuayiModelProperty tableModelProperty = new HuayiModelProperty();
+                tableModelProperty.setSpecification("∠"+specification);
+                double thickness = 2.5+0.25*m;
+                BigDecimal weightPer = new BigDecimal((weigth+weigth-thickness)*thickness*6*0.00785).setScale(3,BigDecimal.ROUND_UP);
+
+                tableModelProperty.setThickness(thickness+"");
+                tableModelProperty.setKinds("RJG");
+                tableModelProperty.setTranDt(tranDate);
+                tableModelProperty.setTonPrice(priceTonPrice.multiply(new BigDecimal("1000")).setScale(2,BigDecimal.ROUND_UP));
+                tableModelProperty.setWeightPer(weightPer);
+                tableModelProperty.setCostPrice(weightPer.multiply(priceTonPrice).setScale(2,BigDecimal.ROUND_UP));
+                tableModelProperty.setQuanlity(BigDecimal.ZERO);
+                tableHeaderExcel_JG.add(tableModelProperty);
+
+
+                if (m==10){ // 每种型号最后一个厚度之后需要增加一个空行
+                    tableModelProperty = new HuayiModelProperty();
+                    tableModelProperty.setSpecification("");
+                    tableHeaderExcel_JG.add(tableModelProperty);
+                }
+
+
+            }
+
+
+        }
+        multipleSheelPropety_JG.setData(tableHeaderExcel_JG);
+        multipleSheelPropety_JG.setSheet(sheet_JG);
+
+        list1.add(multipleSheelPropety_JG);
+
 
         ExcelUtil.writeWithMultipleSheel(fileFullPath,list1);
 
