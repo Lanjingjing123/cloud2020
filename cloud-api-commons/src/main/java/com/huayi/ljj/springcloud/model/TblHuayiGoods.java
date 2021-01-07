@@ -5,6 +5,11 @@ import java.math.BigDecimal;
 
 public class TblHuayiGoods implements Serializable {
     /**
+     * 
+     */
+    private Long id;
+
+    /**
      * 规格
      */
     private String specification;
@@ -48,6 +53,22 @@ public class TblHuayiGoods implements Serializable {
      * huayi_goods
      */
     private static final long serialVersionUID = 1L;
+
+    /**
+     * 
+     * @return ID 
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * 
+     * @param id 
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     /**
      * 规格
@@ -183,6 +204,7 @@ public class TblHuayiGoods implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
         sb.append(", specification=").append(specification);
         sb.append(", thickness=").append(thickness);
         sb.append(", quanlity=").append(quanlity);

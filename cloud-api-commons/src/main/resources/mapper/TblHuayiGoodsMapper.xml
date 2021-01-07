@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.huayi.ljj.springcloud.dao.TblHuayiGoodsMapper">
   <resultMap id="BaseResultMap" type="com.huayi.ljj.springcloud.model.TblHuayiGoods">
+    <id column="ID" jdbcType="BIGINT" property="id" />
     <result column="SPECIFICATION" jdbcType="VARCHAR" property="specification" />
     <result column="THICKNESS" jdbcType="VARCHAR" property="thickness" />
     <result column="quanlity" jdbcType="DECIMAL" property="quanlity" />
@@ -70,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    SPECIFICATION, THICKNESS, quanlity, cost_price, weight_per, tran_dt, count, kinds
+    ID, SPECIFICATION, THICKNESS, quanlity, cost_price, weight_per, tran_dt, count, kinds
   </sql>
   <select id="selectByExample" parameterType="com.huayi.ljj.springcloud.model.TblHuayiGoodsExample" resultMap="BaseResultMap">
     select
@@ -86,6 +87,16 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from huayi_goods
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from huayi_goods
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
   <delete id="deleteByExample" parameterType="com.huayi.ljj.springcloud.model.TblHuayiGoodsExample">
     delete from huayi_goods
     <if test="_parameter != null">
@@ -93,16 +104,21 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.huayi.ljj.springcloud.model.TblHuayiGoods">
-    insert into huayi_goods (SPECIFICATION, THICKNESS, quanlity, 
-      cost_price, weight_per, tran_dt, 
-      count, kinds)
-    values (#{specification,jdbcType=VARCHAR}, #{thickness,jdbcType=VARCHAR}, #{quanlity,jdbcType=DECIMAL}, 
-      #{costPrice,jdbcType=DECIMAL}, #{weightPer,jdbcType=DECIMAL}, #{tranDt,jdbcType=VARCHAR}, 
-      #{count,jdbcType=DECIMAL}, #{kinds,jdbcType=VARCHAR})
+    insert into huayi_goods (ID, SPECIFICATION, THICKNESS, 
+      quanlity, cost_price, weight_per, 
+      tran_dt, count, kinds
+      )
+    values (#{id,jdbcType=BIGINT}, #{specification,jdbcType=VARCHAR}, #{thickness,jdbcType=VARCHAR}, 
+      #{quanlity,jdbcType=DECIMAL}, #{costPrice,jdbcType=DECIMAL}, #{weightPer,jdbcType=DECIMAL}, 
+      #{tranDt,jdbcType=VARCHAR}, #{count,jdbcType=DECIMAL}, #{kinds,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.huayi.ljj.springcloud.model.TblHuayiGoods">
     insert into huayi_goods
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
       <if test="specification != null">
         SPECIFICATION,
       </if>
@@ -129,6 +145,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
       <if test="specification != null">
         #{specification,jdbcType=VARCHAR},
       </if>
@@ -164,6 +183,9 @@
   <update id="updateByExampleSelective" parameterType="map">
     update huayi_goods
     <set>
+      <if test="record.id != null">
+        ID = #{record.id,jdbcType=BIGINT},
+      </if>
       <if test="record.specification != null">
         SPECIFICATION = #{record.specification,jdbcType=VARCHAR},
       </if>
@@ -195,7 +217,8 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update huayi_goods
-    set SPECIFICATION = #{record.specification,jdbcType=VARCHAR},
+    set ID = #{record.id,jdbcType=BIGINT},
+      SPECIFICATION = #{record.specification,jdbcType=VARCHAR},
       THICKNESS = #{record.thickness,jdbcType=VARCHAR},
       quanlity = #{record.quanlity,jdbcType=DECIMAL},
       cost_price = #{record.costPrice,jdbcType=DECIMAL},
@@ -206,5 +229,47 @@
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.huayi.ljj.springcloud.model.TblHuayiGoods">
+    update huayi_goods
+    <set>
+      <if test="specification != null">
+        SPECIFICATION = #{specification,jdbcType=VARCHAR},
+      </if>
+      <if test="thickness != null">
+        THICKNESS = #{thickness,jdbcType=VARCHAR},
+      </if>
+      <if test="quanlity != null">
+        quanlity = #{quanlity,jdbcType=DECIMAL},
+      </if>
+      <if test="costPrice != null">
+        cost_price = #{costPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="weightPer != null">
+        weight_per = #{weightPer,jdbcType=DECIMAL},
+      </if>
+      <if test="tranDt != null">
+        tran_dt = #{tranDt,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        count = #{count,jdbcType=DECIMAL},
+      </if>
+      <if test="kinds != null">
+        kinds = #{kinds,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.huayi.ljj.springcloud.model.TblHuayiGoods">
+    update huayi_goods
+    set SPECIFICATION = #{specification,jdbcType=VARCHAR},
+      THICKNESS = #{thickness,jdbcType=VARCHAR},
+      quanlity = #{quanlity,jdbcType=DECIMAL},
+      cost_price = #{costPrice,jdbcType=DECIMAL},
+      weight_per = #{weightPer,jdbcType=DECIMAL},
+      tran_dt = #{tranDt,jdbcType=VARCHAR},
+      count = #{count,jdbcType=DECIMAL},
+      kinds = #{kinds,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

@@ -10,13 +10,21 @@ public interface TblHuayiGoodsMapper {
 
     int deleteByExample(TblHuayiGoodsExample example);
 
+    int deleteByPrimaryKey(Long id);
+
     int insert(TblHuayiGoods record);
 
     int insertSelective(TblHuayiGoods record);
 
     List<TblHuayiGoods> selectByExample(TblHuayiGoodsExample example);
 
+    TblHuayiGoods selectByPrimaryKey(Long id);
+
     int updateByExampleSelective(@Param("record") TblHuayiGoods record, @Param("example") TblHuayiGoodsExample example);
 
     int updateByExample(@Param("record") TblHuayiGoods record, @Param("example") TblHuayiGoodsExample example);
+
+    int updateByPrimaryKeySelective(TblHuayiGoods record);
+
+    int updateByPrimaryKey(TblHuayiGoods record);
 }

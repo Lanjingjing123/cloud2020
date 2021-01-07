@@ -97,6 +97,7 @@ public class T40000Service extends BaseService {
             if (StringUtil.isEmpty(tblHuayiGoods.getThickness())){
                 // 厚度为空，更新日期,直接跳过统计
                 tblHuayiGoods2.setTranDt(currentDate);
+                tblHuayiGoods2.setId(null);
                 tblHuayiGoodsMapper.insertSelective(tblHuayiGoods2);
 
                 continue;
@@ -155,6 +156,7 @@ public class T40000Service extends BaseService {
             tblHuayiGoods2.setQuanlity(quanlity);
             // 每天新增一条记录入库
             tblHuayiGoods2.setTranDt(currentDate);
+            tblHuayiGoods2.setId(null);
             tblHuayiGoodsMapper.insertSelective(tblHuayiGoods2);
 
         }
