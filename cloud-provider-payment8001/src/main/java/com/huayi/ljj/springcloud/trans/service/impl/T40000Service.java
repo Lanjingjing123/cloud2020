@@ -124,10 +124,15 @@ public class T40000Service extends BaseService {
                 BigDecimal costPrice = tblBuyTrans.getCostPrice();
                 // 单支重量
                 BigDecimal weightPer = tblBuyTrans.getWeightPer();
-                // 更新为最高的成本价
-                if (costPrice.compareTo(tblHuayiGoods.getCostPrice())>0){
-                    tblHuayiGoods2.setCostPrice(costPrice.setScale(2,BigDecimal.ROUND_UP));
-                }
+                /**
+                 * 更新为最高的成本价 =>
+                 * 变更为最新价格
+                 */
+//                if (costPrice.compareTo(tblHuayiGoods.getCostPrice())>0){
+//                    tblHuayiGoods2.setCostPrice(costPrice.setScale(2,BigDecimal.ROUND_UP));
+//                }
+                tblHuayiGoods2.setCostPrice(costPrice.setScale(2,BigDecimal.ROUND_UP));
+
                 // 更新历史最重的重量
                 if(weightPer.compareTo(tblHuayiGoods.getWeightPer())>0){
                     tblHuayiGoods2.setWeightPer(weightPer.setScale(3,BigDecimal.ROUND_UP));
