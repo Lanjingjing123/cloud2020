@@ -12,11 +12,11 @@
     <artifactId>cloud-consumer-order-80</artifactId>
     <dependencies>
         <!--引入cloud-api-commons通用包依赖，版本与父类工程保持一致-->
-        <dependency>
+<!--        <dependency>
             <groupId>com.huayi.ljj.springcould</groupId>
             <artifactId>cloud-api-commons</artifactId>
             <version>${project.version}</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

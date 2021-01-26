@@ -93,6 +93,7 @@ public class T40000Service extends BaseService {
 
 
             LOG.info("处理前，specification:"+specification+",thickness:"+thickness+","+"qyanlity:"+quanlity);
+            LOG.info("数据[{}]",tblHuayiGoods);
             BeanUtils.copyProperties(tblHuayiGoods,tblHuayiGoods2);
             if (StringUtil.isEmpty(tblHuayiGoods.getThickness())){
                 // 厚度为空，更新日期,直接跳过统计
