@@ -82,6 +82,17 @@ public class T40002Service extends BaseService {
         for (String productNm: productNmlist) { // 分类查询，每一个类型一个sheet
             j++;
             TblHuayiGoodsExample example = new TblHuayiGoodsExample();
+
+            //
+
+            if("QT".equals(productNm)){
+                example.setOrderByClause("SPECIFICATION");
+            }else{
+
+               example.setOrderByClause("'SPECIFICATION','THICKNESS'");
+            }
+
+            //
             example.createCriteria().andTranDtEqualTo(tranDate).andKindsEqualTo(productNm);
 //            example.setOrderByClause("SPECIFICATION");
             List<TblHuayiGoods> tblHuayiGoodsList = tblHuayiGoodsMapper.selectByExample(example);
